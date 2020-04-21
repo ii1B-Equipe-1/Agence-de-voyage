@@ -26,6 +26,7 @@ class client
         bool ajouter_voyage(string idVoy);
         int participe_au_voyage(string idVoy); // retourne la pos du voyage dans VoyagesClient si le voy existe sinon -1
         friend ostream& operator<<(ostream&, const client&);//affiche le client (sans afficher les voyages)
+        int getAge();
 };
 
 

@@ -47,6 +47,13 @@ bool client::ajouter_voyage(string idVoy)
         VoyagesClient.push_back(idVoy);
 }
 
+int client::getAge()
+{
+    int anneeSysteme = date_systeme().getAnnee();
+    int anneeNaissance = DateNaissance.getAnnee();
+    return (anneeSysteme - anneeNaissance);
+}
+
 ostream& operator<<(ostream& output, const client& c)
 {
     output << "   * " << c.Prenom << " " << c.Nom << endl;
