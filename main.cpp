@@ -14,4 +14,18 @@ using namespace std;
 
 int main()
 {
+    //les 4 conteneurs sur lesquelles les modifications auront lieu
+    Destinations tabDestinations;
+    clients tabClient;
+    voyagesSeul tabVoyageSeul;
+    voyagesEnGroupe tabVoyageEngroupe;
+
+    //charger les conteneurs à partir des fichiers s'ils existent
+    //sinon on crée les fichiers
+
+
+    //exécution du programme
+
+
+    //enregistrer les 4 conteneurs dans les fichiers
 }

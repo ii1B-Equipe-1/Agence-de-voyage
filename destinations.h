@@ -23,4 +23,8 @@ class Destinations
 };
 
 
+//méthodes permettant à l'utilisateur de gérer les destinations possibles
+void menu_gestion_destinations();
+void gerer_destinations(Destinations&);
+
 #endif
