@@ -15,7 +15,11 @@ int voyagesSeul::existe(string idVoy)
 bool voyagesSeul::ajouter_voyageSeul(voyageSeul v)
 {
     if (existe(v.getIdVoyage()) == -1)
+    {
         tabVoyageSeul.push_back(v);
+        return true;
+    }
+    return false;
 }
 
 void voyagesSeul::afficher_voyagesSeul(clients& c)

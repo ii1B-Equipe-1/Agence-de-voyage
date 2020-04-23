@@ -43,8 +43,13 @@ int client::participe_au_voyage(string idVoy)
 }
 bool client::ajouter_voyage(string idVoy)
 {
-    if (!participe_au_voyage(idVoy))
+    if (participe_au_voyage(idVoy) == -1)    
+    {
         VoyagesClient.push_back(idVoy);
+        return true;
+    }
+    return false;
+
 }
 
 int client::getAge()
@@ -64,6 +69,7 @@ ostream& operator<<(ostream& output, const client& c)
     output << "   * " << c.Prenom << " " << c.Nom << endl;
     output << "   * Passeport: " << c.numPasseport << endl;
     output << "   * Date de naissance: " << c.DateNaissance << endl;
+    return output;
 }
 
 

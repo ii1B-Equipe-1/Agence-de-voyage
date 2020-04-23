@@ -47,8 +47,8 @@ ostream& operator<<(ostream& output, const Destinations& d)
     {
         for (int i=0; i < d.tabDestination.size(); i++)
             output << "   *  " << d.tabDestination[i] << endl;
-        return output;
     }
+    return output;
 }
 
 
