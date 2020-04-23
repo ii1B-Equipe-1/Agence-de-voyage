@@ -85,39 +85,3 @@ void Destinations::enlever_destination()
     else
         cout << "La destination " << dest <<" n'a pas pu être enlevée" << endl;
 }
-
-
-
-//méthodes permettant à l'utilisateur de gérer les destinations possibles
-
-void menu_gestion_destinations()
-{   cout << endl ;
-    cout << "   1- Afficher les destinations actuelles" << endl ;
-    cout << "   2- Ajouter une destination" << endl ;
-    cout << "   3- Supprimer une destination" << endl;
-    cout << "   4- Retour au menu précédent" << endl << endl; 
-}
-void gerer_destinations(Destinations& tabDestination)
-{
-    int choix;
-    do
-    {
-        menu_gestion_destinations();
-        cout << "votre choix ---> ";
-        cin >> choix;
-        switch (choix)
-        {
-        case 1:
-            cout << tabDestination ; break;
-        case 2:
-            tabDestination.saisir_destination(); break;
-        case 3:
-            tabDestination.enlever_destination(); break;
-        case 4: break;
-        default:
-            cout << "Choix invalide, réessayez" << endl ; 
-        }
-    }
-    while (choix != 4);
-    
-}

@@ -23,7 +23,7 @@ void voyagesSeul::afficher_voyagesSeul(clients& c)
     for (int i=0; i < tabVoyageSeul.size(); i++)
     {
         //cout << "Client :  " <<endl<< c.getClient(tabVoyage[i].getNumPasseport());
-        tabVoyageSeul[i].afficher_voyage(c);
+        tabVoyageSeul[i].afficher_voyage();
     }
 }
 

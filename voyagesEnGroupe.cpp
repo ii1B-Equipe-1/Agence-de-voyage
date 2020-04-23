@@ -12,7 +12,7 @@ int voyagesEnGroupe::existe(string idVoy)
 }
 bool voyagesEnGroupe::ajouter_voyageEnGroupe(voyageEnGroupe g)
 {
-    if (existe(g.getIdVoyage()))
+    if (existe(g.getIdVoyage()) != -1)
         return false;
     else
         {
@@ -23,11 +23,21 @@ bool voyagesEnGroupe::ajouter_voyageEnGroupe(voyageEnGroupe g)
 
 void voyagesEnGroupe::afficher_groupes()
 {
-    for (int i=0; i<tabVoyageEnGroupe.size(); i++)
-    {
-        cout << "*** Groupe i : " << endl;
-        tabVoyageEnGroupe[i].afficher_groupe();
-    }
+    if (tabVoyageEnGroupe.size()==0)
+        cout << "  * Aucun groupe pour le moment " << endl;
+    else
+        for (int i=0; i<tabVoyageEnGroupe.size(); i++)
+            tabVoyageEnGroupe[i].afficher_voyage();
+}
+
+void voyagesEnGroupe::afficher_groupes(Destination dest)
+{
+    if (tabVoyageEnGroupe.size()==0)
+        cout << "  * Aucun groupe vers cette destination pour le moment " << endl;
+    else
+        for (int i=0; i<tabVoyageEnGroupe.size(); i++)
+            if (tabVoyageEnGroupe[i].getDestination() == dest)
+                tabVoyageEnGroupe[i].afficher_voyage();
 }
 
 int voyagesEnGroupe::nb_voyagesEnGroupe()
@@ -38,26 +48,36 @@ int voyagesEnGroupe::nb_voyagesEnGroupe()
 vector<string> voyagesEnGroupe::groupes_disponibles()
 {
     vector <string> disponibles;
-    cout << "Les groupes disponibles :  " << endl;
-    for (int i =0; i< tabVoyageEnGroupe.size(); i++)
+    if (existe_groupes_disponibles())
     {
-        if (tabVoyageEnGroupe[i].nb_participants() <= 15)
-            tabVoyageEnGroupe[i].afficher_groupe();
-            disponibles.push_back(tabVoyageEnGroupe[i].getIdVoyage());   
+        cout << "Les groupes disponibles :  " << endl;
+        for (int i =0; i< tabVoyageEnGroupe.size(); i++)
+        {
+            if (tabVoyageEnGroupe[i].nb_participants() < 15)
+                tabVoyageEnGroupe[i].afficher_voyage();
+                disponibles.push_back(tabVoyageEnGroupe[i].getIdVoyage());   
+        }
     }
+    else
+        cout << endl << "   Aucun groupe disponible " << endl << endl;
     return disponibles;
 }
 
 vector<string> voyagesEnGroupe::groupes_disponibles(Destination d)
 {
     vector <string> disponibles;
-    cout << "Les groupes disponibles :  " << endl;
-    for (int i =0; i< tabVoyageEnGroupe.size(); i++)
+    if (existe_groupes_disponibles(d))
     {
-        if ((tabVoyageEnGroupe[i].nb_participants() < 15) && (tabVoyageEnGroupe[i].getDestination() == d))
-            tabVoyageEnGroupe[i].afficher_groupe();
-            disponibles.push_back(tabVoyageEnGroupe[i].getIdVoyage());   
+        cout << "Les groupes disponibles :  " << endl;
+        for (int i =0; i< tabVoyageEnGroupe.size(); i++)
+        {
+            if ((tabVoyageEnGroupe[i].nb_participants() < 15) && (tabVoyageEnGroupe[i].getDestination() == d))
+                tabVoyageEnGroupe[i].afficher_voyage();
+                disponibles.push_back(tabVoyageEnGroupe[i].getIdVoyage());   
+        }
     }
+    else
+        cout << endl << "   Aucun groupe disponible " << endl << endl;
     return disponibles;
 }
 

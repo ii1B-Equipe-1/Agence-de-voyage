@@ -27,6 +27,3 @@ class voyage
 };
 
 #endif
-
-/**** autres fonctions ****/
-string generer_id_voyage(bool enGroupe, int nbVoyGroupe);

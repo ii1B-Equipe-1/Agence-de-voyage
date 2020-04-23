@@ -29,12 +29,11 @@ bool voyageEnGroupe::ajouter_participant(string numPass)
     
 }
 
-void voyageEnGroupe::afficher_groupe()
+void voyageEnGroupe::afficher_voyage()
 {
-        cout << "   -Destination :    " << Dest ;
-        cout << "   -Date de depart : " << dateDepart ;
-        cout << "   -Date de retour : " << dateRetour ;
-        cout << "   -Le nombre de voyageurs actuel : " << participants.size()<< endl;
+        cout << endl;
+        voyage::afficher_voyage();
+        cout << "   -Le nombre de voyageurs actuel : " << participants.size()<< endl << endl;
 }
 
 int voyageEnGroupe::nb_participants()

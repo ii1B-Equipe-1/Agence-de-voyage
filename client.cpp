@@ -54,6 +54,11 @@ int client::getAge()
     return (anneeSysteme - anneeNaissance);
 }
 
+vector<string> client::getVoyagesClient()
+{
+    return VoyagesClient;
+}
+
 ostream& operator<<(ostream& output, const client& c)
 {
     output << "   * " << c.Prenom << " " << c.Nom << endl;

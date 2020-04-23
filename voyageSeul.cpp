@@ -19,8 +19,7 @@ string voyageSeul::getNumPasseport()
 }
 
 
-void voyageSeul::afficher_voyage(clients& c )
+void voyageSeul::afficher_voyage()
 {
-    cout << c.getClient(numPasseport);
     voyage::afficher_voyage();
 }

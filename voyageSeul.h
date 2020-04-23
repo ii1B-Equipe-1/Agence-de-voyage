@@ -16,7 +16,7 @@ class voyageSeul : public voyage
         voyageSeul();
         voyageSeul(const string&, const string& numPass, Destination, Date, Date );
         string getNumPasseport();
-        void afficher_voyage( clients&);
+        void afficher_voyage();
 };
 
 #endif

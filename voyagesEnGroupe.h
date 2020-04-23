@@ -18,6 +18,7 @@ class voyagesEnGroupe
         int existe(string idVoy);
         bool ajouter_voyageEnGroupe(voyageEnGroupe);
         void afficher_groupes();
+        void afficher_groupes(Destination);
         int nb_voyagesEnGroupe();
         vector<string> groupes_disponibles(); //affiche tous les groupes disponibles et retourne les id dans un vecteur
         vector<string> groupes_disponibles(Destination);// affiche les groupes disponible pour une destination et retourne les id dans un vecteur

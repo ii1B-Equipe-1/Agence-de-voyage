@@ -8,6 +8,7 @@
 #include "destination.h"
 #include "destinations.h"
 #include "date.h"
+#include "gestionAgence.h"
 
 #include <iostream>
 using namespace std;

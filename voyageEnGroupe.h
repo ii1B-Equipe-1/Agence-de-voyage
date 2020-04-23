@@ -17,7 +17,7 @@ class voyageEnGroupe : public voyage
         ~voyageEnGroupe();
         int est_paticipant(string numPass);// position si il existe et -1 sinon
         bool ajouter_participant(string numPass);
-        void afficher_groupe();
+        void afficher_voyage();
         vector<string> getParticipants();
         int nb_participants();
 };

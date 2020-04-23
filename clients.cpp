@@ -39,7 +39,7 @@ bool clients::supprimer_client(const string& numPass)
     }
 }
 
-void clients::saisir_client()
+void clients::saisir_client(const string& numPass)
 {
     cout << "--->  Donner le nom du client : ";
     string n;
@@ -47,7 +47,6 @@ void clients::saisir_client()
     cout << "--->  Donner le prénom du client : " ;
     string p;
     cin >> p;
-    string numPass = saisir_numPasseport();
     cout << "--->  Donner la date de naissance (jj/mm/aaaa) : ";
     Date naissance;
     do
