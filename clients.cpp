@@ -64,14 +64,14 @@ void clients::saisir_client()
         cout << "Une erreur s'est produite lors de l'ajout du client." << endl;
 }
 
-client clients::getClient(string numPass)
+client& clients::getClient(string numPass)
 {
     int pos = existe(numPass);
     if (pos != -1)
         return tabClient[pos];
 }
 
-client clients::get_ieme_client(int i)
+client& clients::get_ieme_client(int i)
 {
     return tabClient[i];
 }

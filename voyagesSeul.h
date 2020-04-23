@@ -15,6 +15,7 @@ class voyagesSeul
         int existe(string);
         bool ajouter_voyageSeul(voyageSeul);
         void afficher_voyagesSeul(clients&);
+        voyageSeul& getVoyage(const string& idVoy);
 };
 
 #endif 

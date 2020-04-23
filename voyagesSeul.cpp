@@ -26,3 +26,9 @@ void voyagesSeul::afficher_voyagesSeul(clients& c)
         tabVoyageSeul[i].afficher_voyage(c);
     }
 }
+
+voyageSeul& voyagesSeul::getVoyage(const string& idVoy)
+{
+    if (existe(idVoy) != -1)
+        return tabVoyageSeul[existe(idVoy)];
+}

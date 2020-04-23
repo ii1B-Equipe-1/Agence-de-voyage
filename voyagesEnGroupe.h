@@ -23,6 +23,7 @@ class voyagesEnGroupe
         vector<string> groupes_disponibles(Destination);// affiche les groupes disponible pour une destination et retourne les id dans un vecteur
         bool existe_groupes_disponibles();
         bool existe_groupes_disponibles(Destination);
+        voyageEnGroupe& getVoyage(const string& idVoy);
 };
 
 

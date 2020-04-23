@@ -76,3 +76,9 @@ bool voyagesEnGroupe::existe_groupes_disponibles(Destination d)
             return true ;
     return false;
 }
+
+voyageEnGroupe& voyagesEnGroupe::getVoyage(const string& idVoy)
+{
+    if (existe(idVoy) != -1)
+        return tabVoyageEnGroupe[existe(idVoy)];
+}
