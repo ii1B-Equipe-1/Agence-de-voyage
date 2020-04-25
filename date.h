@@ -1,7 +1,6 @@
 #ifndef DATE_H
 #define DATE_H
 
-
 #include <iostream>
 #include <ctime>
 #include <string>
@@ -37,10 +36,11 @@ Date date_systeme();        //retourne la date systeme
 bool date_valide(int,int,int); //vérifie si les valeur de jour, mois et année sont valides
 bool est_numerique(const string&); //vérifie si une chaine est numérique
 bool format_date(const string&); // vérifie si une chaine est de la forma jj/mm/aaaa
-Date saisir_date();     //saisir une date à partir du clavier
+Date saisir_date();     //saisir une datee à partir du clavier
 bool est_dateNaissance(Date); //vérifie que la date de naissance est dans le passé (càd < date systeme)
 
 Date saisir_date_depart();
 Date saisir_date_retour(Date); //date de retour > date de départ
-
+bool annee_bissextile(int);
+int difference_date(Date, Date); //calcule la durée en jours entre deux dates
 #endif

@@ -256,3 +256,49 @@ Date saisir_date_retour(Date dep)
     
     return dep;  
 }
+
+bool annee_bissextile (int annee)
+{
+    if (( annee % 4 == 0) && ((annee % 100 != 0) || ( annee % 400 ==0)))
+        return true;
+    return false;
+}
+
+int difference_date(Date d1, Date d2)
+{
+    int j1 = d1.getJour();
+    int m1 = d1.getMois();
+    int a1 = d1.getAnnee();
+
+    int j2 = d2.getJour();
+    int m2 = d2.getMois();
+    int a2 = d2.getAnnee();
+    
+    int cumJours[] = {0,31,59,90,120,151,181,212,243,273,304,334};
+    int cumJoursBissextile[] = {0,31,60,91,121,152,182,213,244,274,305,335};
+    int nbJours = 0;
+    if (d1.getAnnee() == d2.getAnnee())
+        if (annee_bissextile(d1.getAnnee()))
+            return abs((cumJoursBissextile[m2-1]+j2 - (cumJoursBissextile[m1-1]+j1)));
+        else
+            return abs((cumJours[m2-1]+j2) - (cumJours[m1-1]+j1));     
+    if (annee_bissextile(a1))
+        nbJours += 366 - (cumJoursBissextile[m1]+j1);
+    else
+        nbJours += 365 - (cumJours[m1]+j1);
+
+    int annee = a1 +1;
+    while (annee < a2)
+    {
+        if (annee_bissextile(annee))
+            nbJours += 366;
+        else
+            nbJours += 365;
+        annee++;       
+    }
+    if (annee_bissextile(a2))
+        nbJours += cumJoursBissextile[m2-1] + j2;
+    else
+        nbJours += cumJours[m2-1] + j2;
+    return abs(nbJours);
+}
