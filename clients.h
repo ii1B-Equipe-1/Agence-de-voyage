@@ -21,6 +21,7 @@ class clients
         void saisir_client(const string& numPass);//crée un client et l'ajoute à tabclient
         client& getClient(string numPass);
         client& get_ieme_client(int i);
+        void annuler_voyage(const string& idVoy); // supprime un voyage de tous les clients si il s'agit d'un voy en groupe
 };
 
 

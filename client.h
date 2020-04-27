@@ -27,6 +27,7 @@ class client
         int participe_au_voyage(string idVoy); // retourne la pos du voyage dans VoyagesClient si le voy existe sinon -1
         friend ostream& operator<<(ostream&, const client&);//affiche le client (sans afficher les voyages)
         int getAge();
+        void annuler_voyage(const string& idVoy); // annule le voyage pour le client si il y participe
 };
 
 

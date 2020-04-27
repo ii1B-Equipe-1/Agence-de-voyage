@@ -81,6 +81,14 @@ vector<string> voyagesEnGroupe::groupes_disponibles(Destination d)
     return disponibles;
 }
 
+vector<string> voyagesEnGroupe::tous_les_groupes()
+{
+    vector<string> v;
+    for (int i=0; i<tabVoyageEnGroupe.size(); i++)
+        v.push_back(tabVoyageEnGroupe[i].getIdVoyage());
+    return v;
+}
+
 bool voyagesEnGroupe::existe_groupes_disponibles()
 {
     for (int i=0; i < tabVoyageEnGroupe.size(); i++)
@@ -101,4 +109,16 @@ voyageEnGroupe& voyagesEnGroupe::getVoyage(const string& idVoy)
 {
     if (existe(idVoy) != -1)
         return tabVoyageEnGroupe[existe(idVoy)];
+}
+
+
+void voyagesEnGroupe::annuler_voyage(const string& idVoy)
+{
+    if (existe(idVoy) != -1)
+    {
+        int pos = existe(idVoy);
+        for (int i=pos; i<tabVoyageEnGroupe.size()-1;i++)
+            tabVoyageEnGroupe[i] = tabVoyageEnGroupe[i+1];
+        tabVoyageEnGroupe.pop_back();
+    }
 }

@@ -22,9 +22,11 @@ class voyagesEnGroupe
         int nb_voyagesEnGroupe();
         vector<string> groupes_disponibles(); //affiche tous les groupes disponibles et retourne les id dans un vecteur
         vector<string> groupes_disponibles(Destination);// affiche les groupes disponible pour une destination et retourne les id dans un vecteur
+        vector<string> tous_les_groupes();
         bool existe_groupes_disponibles();
         bool existe_groupes_disponibles(Destination);
         voyageEnGroupe& getVoyage(const string& idVoy);
+        void annuler_voyage(const string&); //supprime le voyage de tab!voyageEngroupe à partir de l'id
 };
 
 

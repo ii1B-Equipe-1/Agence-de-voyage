@@ -74,3 +74,11 @@ client& clients::get_ieme_client(int i)
 {
     return tabClient[i];
 }
+
+
+void clients::annuler_voyage(const string& idVoy)
+{
+    for (int i=0; i<tabClient.size();i++)
+        if (tabClient[i].participe_au_voyage(idVoy) != -1)
+            tabClient[i].annuler_voyage(idVoy);
+}

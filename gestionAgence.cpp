@@ -65,7 +65,8 @@ void menu_gestion_groupe()
     cout << "   1- Afficher tous les groupes" << endl;
     cout << "   2- Afficher tous les groupes pour une destination donnée" << endl;
     cout << "   3- Créer un nouveau groupe " << endl;
-    cout << "   4- Retour" << endl << endl;
+    cout << "   4- Annuler un voyage en groupe" << endl;
+    cout << "   5- Retour" << endl << endl;
 }
 
 void saisir_voyage_en_groupe(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest)
@@ -81,7 +82,18 @@ void saisir_voyage_en_groupe(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDes
     cout << endl;
 }
 
-void gerer_groupes(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest)
+void annuler_voyage_groupe(voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
+{
+    cout << "  Donner l'id du voyage en groupe que vous voulez annuler" << endl;
+    cout << " ---> ";
+    vector<string> tabId = tabVoyGroupe.tous_les_groupes();
+    string idVoy = saisir_idVoyage_groupe(tabId);
+    tabVoyGroupe.annuler_voyage(idVoy); // suppression de tabVoyGroupe
+    tabClient.annuler_voyage(idVoy); //supprime le voyage pour tous les clients qui y participent
+    cout << " Le voyage en groupe a bien été annulé." << endl << endl;
+}
+
+void gerer_groupes(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest, clients& tabClient)
 {
     int choix;
     do
@@ -100,8 +112,10 @@ void gerer_groupes(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest)
         }
         if (choix == 3)
             saisir_voyage_en_groupe(tabVoyGroupe, tabDest);
+        if (choix == 4)
+            annuler_voyage_groupe(tabVoyGroupe, tabClient);
     } 
-    while  (choix != 4);
+    while  (choix != 5);
     
 }
 
@@ -251,7 +265,8 @@ void menu_ancien_client()
     cout << "   1- Nouveau voyage" << endl;
     cout << "   2- Afficher les voyages à venir" << endl;
     cout << "   3- Afficher tous les voyages" << endl;
-    cout << "   4- Retour" << endl << endl; 
+    cout << "   4- Annuler un voyage" << endl;
+    cout << "   5- Retour" << endl << endl; 
 }
 
 void afficher_voyages_client(const string& numPass, clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
@@ -267,18 +282,57 @@ void afficher_voyages_client(const string& numPass, clients& tabClient, voyagesS
     }
 };
 
-void afficher_futur_voyages_client(const string& numPass, clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
+vector<string> afficher_futur_voyages_client(const string& numPass, clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
 {
     vector<string> voy = tabClient.getClient(numPass).getVoyagesClient();
+    vector<string> futurVoy;
     for (int i = 0; i < voy.size(); i++)
     {
         string idVoy = voy[i];
         if ( en_groupe(idVoy))
             if (tabVoyGroupe.getVoyage(idVoy).getDateDepart() > date_systeme())
+            {
                 tabVoyGroupe.getVoyage(idVoy).afficher_voyage();
+                futurVoy.push_back(idVoy);
+            }
         else
             if ( tabVoySeul.getVoyage(idVoy).getDateDepart() > date_systeme())
-            tabVoySeul.getVoyage(idVoy).afficher_voyage();
+            {
+                tabVoySeul.getVoyage(idVoy).afficher_voyage();
+                futurVoy.push_back(idVoy);
+            }
+    }
+    return futurVoy;
+}
+
+string saisir_id_voyage_client(vector<string>& tabVoy)
+{
+    cout << endl << "Saisir l'id du voyage à annuler " << endl;
+    string id;
+    do
+    {
+        cin >> id;
+        if (existe(tabVoy, id) == -1)
+            cout << "Id incorrect ,réessayez ---> "; 
+    }
+    while (existe(tabVoy, id) == -1);
+    return id;
+}
+
+void annuler_voyage_client(const string& numPass, clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
+{
+    vector<string> tabVoy = afficher_futur_voyages_client(numPass, tabClient, tabVoySeul, tabVoyGroupe);
+    string idVoy = saisir_id_voyage_client(tabVoy);
+    if (!en_groupe(idVoy))
+    {
+        tabClient.getClient(numPass).annuler_voyage(idVoy);
+        cout << "Le voyage a bien été annulé"<< endl  << endl;
+    }
+    else if (en_groupe(idVoy))
+    {
+        tabClient.getClient(numPass).annuler_voyage(idVoy); // suppression pour le client
+        tabVoyGroupe.annuler_voyage(idVoy); // supprimer le client du groupe
+        cout << "Le voyage en groupe a bien été annulé "<< endl << endl;
     }
 }
 
@@ -301,12 +355,13 @@ void gerer_ancien_client(const string& numPass, clients& tabClient, voyagesSeul&
                 afficher_voyages_client(numPass, tabClient, tabVoySeul, tabVoyGroupe);
                 break;
             case 4:
+                annuler_voyage_client(numPass, tabClient, tabVoySeul, tabVoyGroupe);
                 break;
             default:
                 break;
         }
 
-        } while (choix != 4);
+        } while (choix != 5);
 }
 
 void gerer_clients(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, Destinations& tabDestinations)

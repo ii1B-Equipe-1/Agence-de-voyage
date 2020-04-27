@@ -104,3 +104,14 @@ string saisir_numPasseport()
     } while (!est_numPasseport(numPass));
     return numPass;
 }
+
+void client::annuler_voyage(const string& idVoy)
+{
+    if (participe_au_voyage(idVoy) != -1)
+    {
+        int pos = participe_au_voyage(idVoy);
+        for (int i=pos; i<VoyagesClient.size()-1;i++)
+            VoyagesClient[i]=VoyagesClient[i+1];
+        VoyagesClient.pop_back();
+    }
+}
