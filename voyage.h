@@ -24,6 +24,7 @@ class voyage
         Date getDateDepart();
         Date getDateRetour();
         void afficher_voyage();
+        void retarder_voyage();
 };
 
 #endif

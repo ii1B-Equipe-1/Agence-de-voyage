@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "destination.h"
+#include <fstream>
 using namespace std;
 
 class Destinations
@@ -21,6 +22,8 @@ class Destinations
         void enlever_destination();//a partir du clavier
         friend ostream& operator<<(ostream&, const Destinations&);
         bool est_vide();
+        int nb_dest();
+        Destination& getDest(int);
         void writeToFile();
         void readFile();
 };

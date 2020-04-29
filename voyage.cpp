@@ -39,3 +39,18 @@ void voyage::afficher_voyage()
     cout << "   -Date de depart : " << dateDepart;
     cout << "   -Date de retour : " << dateRetour;
 }
+
+
+void voyage::retarder_voyage()
+{
+    Date dep;
+    do
+    {
+        cout << " Donner la nouvelle date de départ " << endl;
+        cout << " ---> ";
+        dep = saisir_date();
+    }
+    while ((dep < dateDepart) || (dep == dateDepart));
+    Date ret;
+    ret = saisir_date_retour(dep);
+}

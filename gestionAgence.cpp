@@ -397,9 +397,38 @@ void gerer_clients(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe&
 
 
 
-
-void afficher_tous_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
+/*****************/
+void afficher_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
 {
-    tabVoySeul.afficher_voyagesSeul(tabClient);
+    cout << endl << "Les voyages en groupes :  " << endl;
     tabVoyGroupe.afficher_groupes();
+    cout << endl << "Les voyages de clients seul : " << endl;
+    tabVoySeul.afficher_voyagesSeul(tabClient);
+}
+
+void retarder_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
+{
+    Date d;
+    do
+    {
+        cout << "  Donner la date pour laquelle vous voulez retarder tous les voyages : " << endl;
+        d = saisir_date();
+    }
+    while ( d > date_systeme());
+    tabVoySeul.retarder_voyages_seul(d);
+    tabVoyGroupe.retarder_voyages_en_groupe(d);
+}
+
+void liste_voyages_pays(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest)
+{
+    for (int i=0; i < tabDest.nb_dest(); i++)
+    {
+        Destination d = tabDest.getDest(i);
+        cout << endl;
+        cout << "  Pour la destination " << d << endl;
+        cout << "    Les voyages seul :" << endl;
+        tabVoySeul.liste_voyages_pays(d);
+        cout << "    Les voyages en groupe :" << endl;
+        tabVoyGroupe.afficher_groupes(d);
+    }
 }

@@ -94,6 +94,18 @@ bool Destinations::est_vide()
         return false;
 }
 
+int Destinations::nb_dest()
+{
+    return tabDestination.size();
+}
+
+Destination& Destinations::getDest(int i)
+{
+    return tabDestination[i];
+}
+
+
+
 void Destinations::writeToFile()
 {
     //1ere ligne est le nbre de destinations

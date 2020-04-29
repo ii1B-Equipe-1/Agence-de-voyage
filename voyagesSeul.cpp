@@ -74,3 +74,38 @@ bool voyagesSeul::annuler_voyage(const string& idVoy)
         return true;
     }   
 }
+
+bool voyagesSeul::est_vide()
+{
+    if (tabVoyageSeul.size()==0)
+        return true;
+    return false;
+}
+
+void voyagesSeul::retarder_voyages_seul(Date dep)
+{
+    int nbRet = 0;
+    for (int i=0; i < tabVoyageSeul.size(); i++)
+        if (tabVoyageSeul[i].getDateDepart() == dep)
+        {
+            tabVoyageSeul[i].retarder_voyage();
+            nbRet++;
+        }
+    if (nbRet == 0)
+        cout << " Aucun voyage seul n'a été retardé"<< endl << endl;
+    else
+        cout << " " << nbRet << " voyages seul ont été retardé" << endl << endl;
+}
+
+void voyagesSeul::liste_voyages_pays(Destination dest)
+{
+    bool test = false;
+    for (int i=0; i < tabVoyageSeul.size(); i++)
+        if (tabVoyageSeul[i].getDestination() == dest)
+        {
+            tabVoyageSeul[i].afficher_voyage();
+            test = true;
+        }
+    if (test == false)
+        cout << "  * Aucun voyage seul vers cette destination pour le moment " << endl;
+}
