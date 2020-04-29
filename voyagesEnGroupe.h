@@ -27,6 +27,9 @@ class voyagesEnGroupe
         bool existe_groupes_disponibles(Destination);
         voyageEnGroupe& getVoyage(const string& idVoy);
         void annuler_voyage(const string&); //supprime le voyage de tab!voyageEngroupe à partir de l'id
+        vector<string> afficher_voyages_client(const string&);
+        vector<string> afficher_futur_voyages_client(const string&);
+        bool est_vide();
 };
 
 

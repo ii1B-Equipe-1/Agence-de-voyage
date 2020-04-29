@@ -24,7 +24,11 @@ void gerer_destinations(Destinations& tabDestination)
         case 2:
             tabDestination.saisir_destination(); break;
         case 3:
-            tabDestination.enlever_destination(); break;
+                if (tabDestination.est_vide())
+                    cout << " Aucune destination à enlever "<< endl;
+                else
+                    tabDestination.enlever_destination();
+                break;
         case 4: break;
         default:
             cout << "Choix invalide, réessayez" << endl ; 
@@ -36,26 +40,32 @@ void gerer_destinations(Destinations& tabDestination)
 
 Destination choisir_destination(Destinations& tabDestination)
 {
-    cout << endl;
-    cout << " Les desstinations disponibles :  "<< endl << endl;
-    cout << tabDestination << endl;
-    cout << "Choisir une destination :" << endl << endl;
-    string pays;
-    string ville;
-    Destination dest;
-    do
+    if (tabDestination.est_vide())
+        cout << "Aucune destination n'est disponible" << endl << endl;
+    else
     {
-        cout << " Donner le pays ---> ";
-        cin >> pays;
-        cout << " Donner la vile ---> ";
-        cin >> ville;
-        dest.setPays(pays);
-        dest.setVille(ville);
-        if (tabDestination.existe(dest) == -1)
-            cout << endl << "   Choix invalide, réessayez "<< endl << endl;
-    } while (tabDestination.existe(dest) == -1);
-    cout << endl << "La destination " << dest << " a été choisie." << endl << endl;
-    return dest;
+        cout << endl;
+        cout << " Les destinations disponibles :  "<< endl << endl;
+        cout << tabDestination << endl;
+        cout << "Choisir une destination :" << endl << endl;
+        string pays;
+        string ville;
+        Destination dest;
+        do
+        {
+            cout << " Donner le pays ---> ";
+            cin >> pays;
+            cout << " Donner la vile ---> ";
+            cin >> ville;
+            dest.setPays(pays);
+            dest.setVille(ville);
+            if (tabDestination.existe(dest) == -1)
+                cout << endl << "   Choix invalide, réessayez "<< endl << endl;
+        } 
+        while (tabDestination.existe(dest) == -1);
+        cout << endl << "La destination " << dest << " a été choisie." << endl << endl;
+        return dest;
+    }
 }
 
 /******************** GESTIONS DES GROUPES *******************************/
@@ -84,8 +94,9 @@ void saisir_voyage_en_groupe(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDes
 
 void annuler_voyage_groupe(voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
 {
+    /*
     cout << "  Donner l'id du voyage en groupe que vous voulez annuler" << endl;
-    cout << " ---> ";
+    cout << " ---> ";*/
     vector<string> tabId = tabVoyGroupe.tous_les_groupes();
     string idVoy = saisir_idVoyage_groupe(tabId);
     tabVoyGroupe.annuler_voyage(idVoy); // suppression de tabVoyGroupe
@@ -107,8 +118,13 @@ void gerer_groupes(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest, clients
         }
         if (choix == 2)
         {
-            Destination dest = choisir_destination(tabDest);
-            tabVoyGroupe.afficher_groupes(dest);
+            if (tabVoyGroupe.est_vide())
+                cout << endl << " Aucun groupe pour le moment " << endl;
+            else
+            {
+                Destination dest = choisir_destination(tabDest);
+                tabVoyGroupe.afficher_groupes(dest);
+            }
         }
         if (choix == 3)
             saisir_voyage_en_groupe(tabVoyGroupe, tabDest);
@@ -123,9 +139,9 @@ void gerer_groupes(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest, clients
 
 
 /********************    GESTION DES CLIENTS ******************************/
-bool en_groupe(const string& id)
+bool en_groupe(string id)
 {
-    if (id.substr(3) == "000")
+    if (id.substr(0,3) == "000")
         return false;
     return true;
 }
@@ -182,7 +198,8 @@ int existe(vector<string>& vect, const string& ch)
 }
 string saisir_idVoyage_groupe( vector<string>& dispo)
 {
-    cout << endl << "Saisir l'id voyage du groupe choisi " << endl;
+    cout << endl << "Saisir l'id voyage du groupe choisi :" << endl;
+    cout << "   --->  ";
     string id;
     do
     {
@@ -202,10 +219,13 @@ void voyager_en_groupe(const string& numPass, clients& tabClient, voyagesSeul& t
         cout << endl << "   1- Afficher tous les groupes disponibles" << endl;
         cout << "   2- Afficher tous les groupes pour une certaine destination" << endl;
         cout << "   3- Retour" << endl << endl;
+        cout << "votre choix ---> ";
         cin >> choix;
         if (choix == 1)
         {
             vector<string> dispo = tabVoyGroupe.groupes_disponibles();
+            if (dispo.size()==0)
+                cout << " Aucun groupe n'est diponible pour le moment " << endl << endl;
             if (dispo.size() != 0)
             {
                 string idVoy = saisir_idVoyage_groupe(dispo);
@@ -242,6 +262,7 @@ void nouveau_voyage(const string& numPass, clients& tabClient, voyagesSeul& tabV
         cout << endl << "   1- Voyager seul" << endl;
         cout << "   2- Voyager en groupe" <<endl;
         cout << "   3- Retour" << endl << endl;
+        cout << endl << "votre choix --->";
         cin >> choix;
         if (choix == 1)
         {
@@ -266,43 +287,27 @@ void menu_ancien_client()
     cout << "   2- Afficher les voyages à venir" << endl;
     cout << "   3- Afficher tous les voyages" << endl;
     cout << "   4- Annuler un voyage" << endl;
-    cout << "   5- Retour" << endl << endl; 
+    cout << "   5- Afficher les informations du client "<< endl;
+    cout << "   6- Retour" << endl << endl; 
 }
 
 void afficher_voyages_client(const string& numPass, clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
 {
-    vector<string> voy = tabClient.getClient(numPass).getVoyagesClient();
-    for (int i = 0; i < voy.size(); i++)
-    {
-        string idVoy = voy[i];
-        if ( en_groupe(idVoy))
-            tabVoyGroupe.getVoyage(idVoy).afficher_voyage();
-        else
-            tabVoySeul.getVoyage(idVoy).afficher_voyage();
-    }
+    vector<string> voyG = tabVoyGroupe.afficher_voyages_client(numPass);
+    vector<string> voyS = tabVoySeul.afficher_voyages_client(numPass);
+    voyS.insert(voyS.end(), voyG.begin(), voyG.end());
+    if (voyS.size()==0)
+        cout << " Le client n'a aucun voyage pour le moment " << endl;
 };
 
 vector<string> afficher_futur_voyages_client(const string& numPass, clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
 {
-    vector<string> voy = tabClient.getClient(numPass).getVoyagesClient();
-    vector<string> futurVoy;
-    for (int i = 0; i < voy.size(); i++)
-    {
-        string idVoy = voy[i];
-        if ( en_groupe(idVoy))
-            if (tabVoyGroupe.getVoyage(idVoy).getDateDepart() > date_systeme())
-            {
-                tabVoyGroupe.getVoyage(idVoy).afficher_voyage();
-                futurVoy.push_back(idVoy);
-            }
-        else
-            if ( tabVoySeul.getVoyage(idVoy).getDateDepart() > date_systeme())
-            {
-                tabVoySeul.getVoyage(idVoy).afficher_voyage();
-                futurVoy.push_back(idVoy);
-            }
-    }
-    return futurVoy;
+    vector<string> voyG = tabVoyGroupe.afficher_futur_voyages_client(numPass);
+    vector<string> voyS = tabVoySeul.afficher_futur_voyages_client(numPass);
+    voyS.insert(voyS.end(), voyG.begin(), voyG.end());
+    if (voyS.size()==0)
+        cout << " Le client n'a aucun voyage dans le futur " << endl;
+    return voyS;
 }
 
 string saisir_id_voyage_client(vector<string>& tabVoy)
@@ -325,10 +330,11 @@ void annuler_voyage_client(const string& numPass, clients& tabClient, voyagesSeu
     string idVoy = saisir_id_voyage_client(tabVoy);
     if (!en_groupe(idVoy))
     {
-        tabClient.getClient(numPass).annuler_voyage(idVoy);
+        tabClient.getClient(numPass).annuler_voyage(idVoy); //suppression de l'idVoy du client
+        tabVoySeul.annuler_voyage(idVoy);   // supression du tableau des voyages seul
         cout << "Le voyage a bien été annulé"<< endl  << endl;
     }
-    else if (en_groupe(idVoy))
+    else
     {
         tabClient.getClient(numPass).annuler_voyage(idVoy); // suppression pour le client
         tabVoyGroupe.annuler_voyage(idVoy); // supprimer le client du groupe
@@ -342,6 +348,7 @@ void gerer_ancien_client(const string& numPass, clients& tabClient, voyagesSeul&
     do
     {
         menu_ancien_client();
+        cout << "votre choix ---> ";
         cin >> choix;
         switch (choix)
         {
@@ -357,11 +364,13 @@ void gerer_ancien_client(const string& numPass, clients& tabClient, voyagesSeul&
             case 4:
                 annuler_voyage_client(numPass, tabClient, tabVoySeul, tabVoyGroupe);
                 break;
+            case 5:
+                cout << tabClient.getClient(numPass);
             default:
                 break;
         }
 
-        } while (choix != 5);
+        } while (choix != 6);
 }
 
 void gerer_clients(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, Destinations& tabDestinations)
@@ -384,4 +393,13 @@ void gerer_clients(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe&
         //on répéte la meme chose que pour un ancien client
         gerer_ancien_client(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDestinations);
     }
+}
+
+
+
+
+void afficher_tous_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
+{
+    tabVoySeul.afficher_voyagesSeul(tabClient);
+    tabVoyGroupe.afficher_groupes();
 }

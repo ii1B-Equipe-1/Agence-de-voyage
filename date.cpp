@@ -244,17 +244,20 @@ Date saisir_date_depart()
 
 Date saisir_date_retour(Date dep)
 {
-    cout << "---> Donner la date de retour :  ";
+    cout << " Donner la date de retour ( la durée minimale du voyage est de 7 jours ) :  " << endl;
+    cout << "   --->  ";
     Date retour;
     do
     {
         retour = saisir_date();
-        if ((retour < dep) || (retour == dep))
-            cout << "La date fournie est invalide, réessayez : ";
+        if (difference_date(dep,retour) < 7)
+        {
+            cout << "La date fournie est invalide, réessayez : " << endl;
+            cout << "   --->  ";
+        }
     } 
-    while ((retour < dep) || (retour == dep));  
-    
-    return dep;  
+    while (difference_date(dep,retour) < 7);  
+    return retour;  
 }
 
 bool annee_bissextile (int annee)

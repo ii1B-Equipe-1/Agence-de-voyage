@@ -10,6 +10,8 @@
 #include "date.h"
 #include "gestionAgence.h"
 
+#include "fstream"
+
 #include <iostream>
 using namespace std;
 
@@ -21,10 +23,16 @@ int main()
     voyagesSeul tabVoyageSeul;
     voyagesEnGroupe tabVoyageEngroupe;
 
+
+
     //charger les conteneurs à partir des fichiers s'ils existent
     //sinon on crée les fichiers
 
+
     //exécution du programme
+    //gerer_groupes(tabVoyageEngroupe, tabDestinations, tabClient);
+    //gerer_clients(tabClient,tabVoyageSeul,tabVoyageEngroupe,tabDestinations);
+
 
 
     //enregistrer les 4 conteneurs dans les fichiers

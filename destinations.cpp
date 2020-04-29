@@ -85,3 +85,11 @@ void Destinations::enlever_destination()
     else
         cout << "La destination " << dest <<" n'a pas pu être enlevée" << endl;
 }
+
+bool Destinations::est_vide()
+{
+    if (tabDestination.size()==0)
+        return true;
+    else
+        return false;
+}

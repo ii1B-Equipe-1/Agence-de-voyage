@@ -25,7 +25,7 @@ Destination choisir_destination( Destinations&); // saisir une parmis les destin
 
 //Gestion des groupes : créations de nouveaux voyages en groupe
 void menu_gestion_groupe();
-void gerer_groupes(voyagesEnGroupe&, Destinations&);
+void gerer_groupes(voyagesEnGroupe&, Destinations&, clients&);
 void saisir_voyage_en_groupe(voyagesSeul&, voyagesEnGroupe&, Destinations&);
 void annuler_voyage_groupe(voyagesEnGroupe&, clients&);
 
@@ -46,8 +46,16 @@ string saisir_idVoyage_groupe(vector<string>&);
 int existe(vector<string>&, const string&);
 void afficher_voyages_client(const string& numPass,clients&, voyagesSeul&, voyagesEnGroupe&);
 vector<string> afficher_futur_voyages_client(const string& numPass,clients&, voyagesSeul&, voyagesEnGroupe&);
-bool en_groupe(const string& idVoy);
+bool en_groupe(string);
 void annuler_voyage_client(const string&, clients&, voyagesSeul&, voyagesEnGroupe&);
 string saisir_id_voyage_client(vector<string>&);
 void gerer_ancien_client(const string& numPass, clients&, voyagesSeul&, voyagesEnGroupe&, Destinations&);
+
+
+/**************/
+void afficher_tous_les_voyages(voyagesSeul&, voyagesEnGroupe&, clients&);
+void retarder_tous_les_voyages(voyagesSeul&,voyagesEnGroupe&);
+void liste_voyages_pays(voyagesEnGroupe&, voyagesEnGroupe&, Destinations&);
+
 #endif
+

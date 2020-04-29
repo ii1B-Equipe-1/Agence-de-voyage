@@ -49,7 +49,6 @@ bool client::ajouter_voyage(string idVoy)
         return true;
     }
     return false;
-
 }
 
 int client::getAge()

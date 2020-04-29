@@ -3,13 +3,12 @@ using namespace std;
 
 voyageSeul::voyageSeul(){};
 voyageSeul::voyageSeul(const string& id,const string& numPass, Destination d, Date dep, Date ret)
-:voyage(id, d, dep, ret)
 {
-    //idVoyage = id;
+    idVoyage = id;
     numPasseport = numPass;
-    //Dest = d;
-    //dateDepart = dep;
-    //dateRetour = ret;
+    Dest = d;
+    dateDepart = dep;
+    dateRetour = ret;
 }
 
 
@@ -21,5 +20,8 @@ string voyageSeul::getNumPasseport()
 
 void voyageSeul::afficher_voyage()
 {
-    voyage::afficher_voyage();
+    cout << "   *IdVoyage       : " << idVoyage << endl;
+    cout << "   -Destination    : " << Dest << endl;
+    cout << "   -Date de depart : " << dateDepart;
+    cout << "   -Date de retour : " << dateRetour;
 }

@@ -20,6 +20,7 @@ class Destinations
         void saisir_destination();//a partir du clavier
         void enlever_destination();//a partir du clavier
         friend ostream& operator<<(ostream&, const Destinations&);
+        bool est_vide();
 };
 
 

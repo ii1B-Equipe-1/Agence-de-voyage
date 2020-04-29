@@ -122,3 +122,36 @@ void voyagesEnGroupe::annuler_voyage(const string& idVoy)
         tabVoyageEnGroupe.pop_back();
     }
 }
+
+
+
+vector<string> voyagesEnGroupe::afficher_voyages_client(const string& numPass)
+{
+    vector<string> vect;
+    for (int i=0; i < tabVoyageEnGroupe.size();i++)
+        if (tabVoyageEnGroupe[i].est_paticipant(numPass) != -1)
+        {
+            tabVoyageEnGroupe[i].afficher_voyage();
+            vect.push_back(tabVoyageEnGroupe[i].getIdVoyage());
+        }
+    return vect;    
+}
+
+vector<string> voyagesEnGroupe::afficher_futur_voyages_client(const string& numPass)
+{
+    vector<string> vect;
+    for (int i=0; i < tabVoyageEnGroupe.size();i++)
+        if ((tabVoyageEnGroupe[i].est_paticipant(numPass) != -1) && (tabVoyageEnGroupe[i].getDateDepart() > date_systeme()))
+        {
+            tabVoyageEnGroupe[i].afficher_voyage();
+            vect.push_back(tabVoyageEnGroupe[i].getIdVoyage());
+        }
+    return vect;    
+}
+
+bool voyagesEnGroupe::est_vide()
+{
+    if (tabVoyageEnGroupe.size()==0)
+        return true;
+    return false;
+}
