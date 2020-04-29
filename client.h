@@ -28,6 +28,8 @@ class client
         friend ostream& operator<<(ostream&, const client&);//affiche le client (sans afficher les voyages)
         int getAge();
         void annuler_voyage(const string& idVoy); // annule le voyage pour le client si il y participe
+        ostream& write(ostream&);
+        istream& read(istream&);
 };
 
 
@@ -36,4 +38,9 @@ class client
 bool est_majus(const string&);
 bool est_numPasseport(const string&); //verifie si une chaine est un numPass valide
 string saisir_numPasseport();
+
+
+ostream& writeVect(vector<string>&, ostream&);
+istream& readVect(vector<string>&, istream&);
+
 #endif

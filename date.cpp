@@ -91,6 +91,18 @@ void Date::retarder_date()
     *this = d;
 }
 
+ostream& Date::write(ostream& out)
+{
+    out << Jour << " " << Mois << " " << Annee;
+    return out;
+}
+
+istream& Date::read(istream& in)
+{
+    in >> Jour >> Mois >> Annee;
+    return in;
+}
+
 //fonction amie de la classe Date
 ostream& operator<<(ostream& output, const Date& d)
 {

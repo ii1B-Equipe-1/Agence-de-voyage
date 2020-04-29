@@ -31,6 +31,8 @@ class voyagesEnGroupe
         vector<string> afficher_futur_voyages_client(const string&);
         bool est_vide();
         void retarder_voyages_en_groupe(Date dep);
+        void writeToFile();
+        void readFile();
 };
 
 

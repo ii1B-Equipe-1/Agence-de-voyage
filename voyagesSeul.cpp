@@ -109,3 +109,34 @@ void voyagesSeul::liste_voyages_pays(Destination dest)
     if (test == false)
         cout << "  * Aucun voyage seul vers cette destination pour le moment " << endl;
 }
+
+
+
+void voyagesSeul::writeToFile()
+{
+
+    ofstream out;
+    out.open("fichier_voyagesSeul");
+    out << tabVoyageSeul.size() << endl;
+    for (int i=0; i<tabVoyageSeul.size();i++)
+    {
+        tabVoyageSeul[i].write(out);
+        out << endl;
+    }
+    out.close();
+}
+
+void voyagesSeul::readFile()
+{
+    ifstream in;
+    in.open("fichier_voyagesSeul");
+    int nb;
+    in >> nb;
+    for (int i=0; i < nb; i++)
+    {
+        voyageSeul voy;
+        voy.read(in);
+        tabVoyageSeul.push_back(voy);
+    }
+    in.close();
+}

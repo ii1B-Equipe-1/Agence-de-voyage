@@ -1,6 +1,7 @@
 #include "voyageEnGroupe.h"
 using namespace std;
 
+voyageEnGroupe::voyageEnGroupe(){}
 voyageEnGroupe::voyageEnGroupe(const string& id, Destination dest, Date dep, Date ret)
 :voyage(id,dest,dep,ret){}
 voyageEnGroupe::~voyageEnGroupe(){};
@@ -39,4 +40,29 @@ void voyageEnGroupe::afficher_voyage()
 int voyageEnGroupe::nb_participants()
 {
     return participants.size();
+}
+
+
+ostream& voyageEnGroupe::write(ostream& out)
+{
+    out << idVoyage << " ";
+    Dest.write(out);
+    out << " ";
+    dateDepart.write(out);
+    out << " ";
+    dateRetour.write(out);
+    out << " ";
+    writeVect(participants, out);
+    out << " ";
+    return out;
+}
+
+istream& voyageEnGroupe::read(istream& in)
+{
+    in >> idVoyage;
+    Dest.read(in);
+    dateDepart.read(in);
+    dateRetour.read(in);
+    readVect(participants, in);
+    return in;
 }

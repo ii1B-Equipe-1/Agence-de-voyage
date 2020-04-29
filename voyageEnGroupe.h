@@ -2,6 +2,7 @@
 #define VOYAGEENGROUPE_H
 
 #include "voyage.h"
+#include "client.h"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -20,6 +21,8 @@ class voyageEnGroupe : public voyage
         void afficher_voyage();
         vector<string> getParticipants();
         int nb_participants();
+        ostream& write(ostream&);
+        istream& read(istream&);
 };
 
 #endif

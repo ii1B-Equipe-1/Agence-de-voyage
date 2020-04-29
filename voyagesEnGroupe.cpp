@@ -170,3 +170,33 @@ void voyagesEnGroupe::retarder_voyages_en_groupe(Date dep)
     else
         cout << " " << nbRet << " voyages en groupe ont été retardé" << endl << endl;
 }
+
+
+void voyagesEnGroupe::writeToFile()
+{
+
+    ofstream out;
+    out.open("fichier_voyagesEnGroupe");
+    out << tabVoyageEnGroupe.size() << endl;
+    for (int i=0; i<tabVoyageEnGroupe.size();i++)
+    {
+        tabVoyageEnGroupe[i].write(out);
+        out << endl;
+    }
+    out.close();
+}
+
+void voyagesEnGroupe::readFile()
+{
+    ifstream in;
+    in.open("fichier_voyagesEnGroupe");
+    int nb;
+    in >> nb;
+    for (int i=0; i < nb; i++)
+    {
+        voyageEnGroupe voy;
+        voy.read(in);
+        tabVoyageEnGroupe.push_back(voy);
+    }
+    in.close();
+}

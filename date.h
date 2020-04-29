@@ -27,6 +27,8 @@ class Date
         bool operator==(const Date& d);  //
         void retarder_date(); //change la date à partir du clavier
         friend ostream& operator<<(ostream&, const Date&); //affichage sous la forme "jj/mm/aaaa"
+        ostream& write(ostream&);
+        istream& read(istream&);
 };
 
 

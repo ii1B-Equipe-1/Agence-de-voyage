@@ -10,6 +10,8 @@
 #include "date.h"
 #include "gestionAgence.h"
 
+#include "menuPrincipal.h"
+
 #include "fstream"
 
 #include <iostream>
@@ -28,14 +30,18 @@ int main()
     //charger les conteneurs à partir des fichiers s'ils existent
     //sinon on crée les fichiers
     tabDestinations.readFile();
-
+    tabClient.readFile();
+    tabVoyageSeul.readFile();
+    tabVoyageEngroupe.readFile();
+    cout << "test";
 
     //exécution du programme
-    gerer_destinations(tabDestinations);
-    //gerer_groupes(tabVoyageEngroupe, tabDestinations, tabClient);
-    //gerer_clients(tabClient,tabVoyageSeul,tabVoyageEngroupe,tabDestinations);
+    menu_principal(tabClient, tabVoyageSeul, tabVoyageEngroupe, tabDestinations);
 
 
     //enregistrer les 4 conteneurs dans les fichiers
     tabDestinations.writeToFile();
+    tabClient.writeToFile();
+    tabVoyageSeul.writeToFile();
+    tabVoyageEngroupe.writeToFile();
 }

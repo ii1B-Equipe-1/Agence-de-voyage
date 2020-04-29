@@ -414,7 +414,7 @@ void retarder_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyG
         cout << "  Donner la date pour laquelle vous voulez retarder tous les voyages : " << endl;
         d = saisir_date();
     }
-    while ( d > date_systeme());
+    while ((d < date_systeme()) || ( d == date_systeme()));
     tabVoySeul.retarder_voyages_seul(d);
     tabVoyGroupe.retarder_voyages_en_groupe(d);
 }
@@ -431,4 +431,15 @@ void liste_voyages_pays(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, 
         cout << "    Les voyages en groupe :" << endl;
         tabVoyGroupe.afficher_groupes(d);
     }
+}
+
+
+void client_gagnant(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, clients& tabClient, Destinations& tabDest)
+{
+    string numPass;
+    numPass = tabClient.numPass_client_gagnant();
+    cout << "  Le client gagnant  : " << endl;
+    cout << tabClient.getClient(numPass) << endl;
+    cout << "  Saisir le nouveau voyage pour le client gagnant :"<< endl;
+    nouveau_voyage(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDest);
 }

@@ -82,3 +82,51 @@ void clients::annuler_voyage(const string& idVoy)
         if (tabClient[i].participe_au_voyage(idVoy) != -1)
             tabClient[i].annuler_voyage(idVoy);
 }
+
+string clients::numPass_client_gagnant()
+{
+    if (tabClient.size()==0)
+        return "";
+    else
+    {
+        vector<string> vect;
+        for (int i=0; i < tabClient.size(); i++)
+        {
+            vector<string> voyC = tabClient[i].getVoyagesClient();
+            for (int j=0; j < voyC.size(); j++)
+                vect.push_back(tabClient[i].getNumPasseport());
+        }
+        srand(time(0));
+        int posGagnant = rand() % vect.size();
+        return (vect[posGagnant]);
+    }
+}
+
+void clients::writeToFile()
+{
+    //1ere ligne est le nbre de destinations
+    ofstream out;
+    out.open("fichier_clients");
+    out << tabClient.size() << endl;
+    for (int i=0; i<tabClient.size();i++)
+    {
+        tabClient[i].write(out);
+        out << endl;
+    }
+    out.close();
+}
+
+void clients::readFile()
+{
+    ifstream in;
+    in.open("fichier_clients");
+    int nb;
+    in >> nb;
+    for (int i=0; i < nb; i++)
+    {
+        client cli;
+        cli.read(in);
+        tabClient.push_back(cli);
+    }
+    in.close();
+}

@@ -25,3 +25,25 @@ void voyageSeul::afficher_voyage()
     cout << "   -Date de depart : " << dateDepart;
     cout << "   -Date de retour : " << dateRetour;
 }
+
+
+ostream& voyageSeul::write(ostream& out)
+{
+    out << numPasseport << " " << idVoyage << " ";
+    Dest.write(out);
+    out << " ";
+    dateDepart.write(out);
+    out << " ";
+    dateRetour.write(out);
+    out << " ";
+    return out;
+}
+
+istream& voyageSeul::read(istream& in)
+{
+    in >> numPasseport >> idVoyage ;
+    Dest.read(in);
+    dateDepart.read(in);
+    dateRetour.read(in);
+    return in;
+}

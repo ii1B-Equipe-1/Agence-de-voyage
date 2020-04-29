@@ -5,6 +5,7 @@
 #include <string>
 #include "date.h"
 #include "client.h"
+#include <fstream>
 using namespace std;
 
 
@@ -22,6 +23,9 @@ class clients
         client& getClient(string numPass);
         client& get_ieme_client(int i);
         void annuler_voyage(const string& idVoy); // supprime un voyage de tous les clients si il s'agit d'un voy en groupe
+        string numPass_client_gagnant();
+        void writeToFile();
+        void readFile();
 };
 
 

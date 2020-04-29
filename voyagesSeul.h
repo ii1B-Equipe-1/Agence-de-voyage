@@ -22,6 +22,8 @@ class voyagesSeul
         void retarder_voyages_seul(Date dep);
         void liste_voyages_pays(Destination dest);
         bool est_vide();
+        void writeToFile();
+        void readFile();
 };
 
 #endif 

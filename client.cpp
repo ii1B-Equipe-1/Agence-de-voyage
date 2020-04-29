@@ -114,3 +114,42 @@ void client::annuler_voyage(const string& idVoy)
         VoyagesClient.pop_back();
     }
 }
+
+
+ostream& client::write(ostream& out)
+{
+    out << numPasseport << " " << Nom << " " << Prenom << " ";
+    DateNaissance.write(out);
+    writeVect(VoyagesClient, out);
+    return out;
+}
+
+istream& client::read(istream& in)
+{
+    in >> numPasseport  >> Nom >> Prenom;
+    DateNaissance.read(in);
+    readVect(VoyagesClient, in);
+    return in;
+}
+
+
+
+
+ostream& writeVect(vector<string>& vect, ostream& out)
+{
+    out << vect.size() << " ";
+    for (int i=0; i < vect.size(); i++)
+        out << vect[i] << " ";
+}
+
+istream& readVect(vector<string>& vect, istream& in)
+{
+    int nb;
+    in >> nb;
+    for (int i=0; i < nb; i++){
+        string s;
+        in >> s;
+        vect.push_back(s);
+    }
+    return in;
+}
