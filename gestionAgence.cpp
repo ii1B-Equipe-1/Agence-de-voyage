@@ -402,7 +402,7 @@ void afficher_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyG
 {
     cout << endl << "Les voyages en groupes :  " << endl;
     tabVoyGroupe.afficher_groupes();
-    cout << endl << "Les voyages de clients seul : " << endl;
+    cout << endl << "Les voyages de clients seul : " << endl << endl;
     tabVoySeul.afficher_voyagesSeul(tabClient);
 }
 

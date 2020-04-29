@@ -22,14 +22,18 @@ bool voyagesSeul::ajouter_voyageSeul(voyageSeul v)
     return false;
 }
 
+
 void voyagesSeul::afficher_voyagesSeul(clients& c)
-{
+{   
     for (int i=0; i < tabVoyageSeul.size(); i++)
     {
-        cout << "Client :  " <<endl<< c.getClient(tabVoyageSeul[i].getNumPasseport());
+        cout << "Client de numéro passeport :  " << c.getClient(tabVoyageSeul[i].getNumPasseport()).getNumPasseport()<<endl;
         tabVoyageSeul[i].afficher_voyage();
     }
+    
 }
+
+
 
 voyageSeul& voyagesSeul::getVoyage(const string& idVoy)
 {
@@ -92,9 +96,9 @@ void voyagesSeul::retarder_voyages_seul(Date dep)
             nbRet++;
         }
     if (nbRet == 0)
-        cout << " Aucun voyage seul n'a été retardé"<< endl << endl;
+        cout << endl << " Aucun voyage seul n'a été retardé"<< endl << endl;
     else
-        cout << " " << nbRet << " voyages seul ont été retardé" << endl << endl;
+        cout <<endl << " " << nbRet << " voyages seul ont été retardé" << endl << endl;
 }
 
 void voyagesSeul::liste_voyages_pays(Destination dest)
