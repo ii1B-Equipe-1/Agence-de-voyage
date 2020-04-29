@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 class Destination
@@ -21,6 +22,8 @@ class Destination
         void setVille(const string&);
         bool operator==(const Destination&);
         friend ostream& operator<<(ostream&, const Destination&);
+        ostream& write(ostream&);
+        istream& read(istream&);
 };
 
 

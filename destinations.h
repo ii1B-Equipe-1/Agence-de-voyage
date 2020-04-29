@@ -21,6 +21,8 @@ class Destinations
         void enlever_destination();//a partir du clavier
         friend ostream& operator<<(ostream&, const Destinations&);
         bool est_vide();
+        void writeToFile();
+        void readFile();
 };
 
 

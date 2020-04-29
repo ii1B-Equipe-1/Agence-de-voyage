@@ -27,13 +27,15 @@ int main()
 
     //charger les conteneurs à partir des fichiers s'ils existent
     //sinon on crée les fichiers
+    tabDestinations.readFile();
 
 
     //exécution du programme
+    gerer_destinations(tabDestinations);
     //gerer_groupes(tabVoyageEngroupe, tabDestinations, tabClient);
     //gerer_clients(tabClient,tabVoyageSeul,tabVoyageEngroupe,tabDestinations);
 
 
-
     //enregistrer les 4 conteneurs dans les fichiers
+    tabDestinations.writeToFile();
 }

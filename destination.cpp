@@ -43,3 +43,16 @@ ostream& operator<<(ostream& output, const Destination& dest)
     output << dest.Pays << ", " << dest.Ville;
     return output ;
 }
+
+
+ostream& Destination::write(ostream& out)
+{
+    out << Pays << " " << Ville ;
+    return out;
+}
+
+istream& Destination::read(istream& in)
+{
+    in >> Pays >> Ville;
+    return in;
+}
