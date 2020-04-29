@@ -426,7 +426,7 @@ void liste_voyages_pays(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, 
         Destination d = tabDest.getDest(i);
         cout << endl;
         cout << "  Pour la destination " << d << endl;
-        cout << "    Les voyages seul :" << endl;
+        cout << endl << "    Les voyages seul :" << endl << endl;
         tabVoySeul.liste_voyages_pays(d);
         cout << "    Les voyages en groupe :" << endl;
         tabVoyGroupe.afficher_groupes(d);

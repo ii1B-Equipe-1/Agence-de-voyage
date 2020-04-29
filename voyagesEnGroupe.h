@@ -33,6 +33,11 @@ class voyagesEnGroupe
         void retarder_voyages_en_groupe(Date dep);
         void writeToFile();
         void readFile();
+
+        /*************************************************/
+        vector<int> liste_des_annees();
+        vector<int> nbre_desvoyages_engroupes_chaquemois(int annee);
+        vector<int> nbre_desvoyages_engroupes_chaquesaison(int annee);
 };
 
 

@@ -103,6 +103,48 @@ istream& Date::read(istream& in)
     return in;
 }
 
+
+
+
+
+
+/*****************************************************************/
+bool Date::Dans_printemps()
+{
+    if((Mois>=3)&&(Mois<=5))
+        return true;
+    else
+        return false;
+}
+bool Date::Dans_automne()
+{
+    if((Mois>=9)&&(Mois<=11))
+        return true;
+    else
+        return false;
+}
+bool Date::Dans_ete()
+{
+    if((Mois>=6)&&(Mois<=8))
+        return true;
+    else
+        return false;
+}
+bool Date::Dans_hiver()
+{
+    if((Mois==12)||(Mois==1)||(Mois==2))
+        return true;
+    else
+        return false;
+}
+
+
+
+
+
+
+
+
 //fonction amie de la classe Date
 ostream& operator<<(ostream& output, const Date& d)
 {

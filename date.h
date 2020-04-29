@@ -29,6 +29,12 @@ class Date
         friend ostream& operator<<(ostream&, const Date&); //affichage sous la forme "jj/mm/aaaa"
         ostream& write(ostream&);
         istream& read(istream&);
+
+        /*****************************/
+        bool Dans_printemps();
+        bool Dans_ete();
+        bool Dans_automne();
+        bool Dans_hiver();
 };
 
 

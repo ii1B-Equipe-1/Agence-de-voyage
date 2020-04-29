@@ -111,7 +111,7 @@ void voyagesSeul::liste_voyages_pays(Destination dest)
             test = true;
         }
     if (test == false)
-        cout << "  * Aucun voyage seul vers cette destination pour le moment " << endl;
+        cout << "  * Aucun voyage seul vers cette destination pour le moment " << endl<< endl;
 }
 
 
@@ -143,4 +143,68 @@ void voyagesSeul::readFile()
         tabVoyageSeul.push_back(voy);
     }
     in.close();
+}
+
+
+
+
+
+/*********************************************************************************/
+
+
+vector<int> voyagesSeul::liste_des_annees()
+{
+    vector<int> annees;
+    for(int i=0;i<tabVoyageSeul.size();i++)
+        annees.push_back(tabVoyageSeul[i].getDateDepart().getAnnee());
+    vector<int> annees1;
+    for(int i=0;i<annees.size();i++)
+    {
+        int f=0;
+        for(int j=(i+1);j<annees.size();j++)
+            if(annees[i]==annees[j])
+                f=1;
+        if(f==0)
+            annees1.push_back(annees[i]);
+
+    }
+    return annees1;
+}
+vector<int> voyagesSeul::nbre_desvoyages_seules_chaquemois(int annee)
+{
+    vector<int> a;
+    for(int i=0;i<12;i++)
+        a.push_back(0);
+    for(int i=0;i<tabVoyageSeul.size();i++)
+    {
+        if(tabVoyageSeul[i].getDateDepart().getAnnee()==annee)
+        {
+            int mois=tabVoyageSeul[i].getDateDepart().getMois();
+            a[mois-1]++;
+        }
+    }
+    return a;
+}
+vector<int> voyagesSeul::nbre_desvoyages_seules_chaquesaison(int annee)
+{
+    vector<int> a;
+    for(int i=0;i<4;i++)
+        a.push_back(0);
+    for(int i=0;i<tabVoyageSeul.size();i++)
+        if(tabVoyageSeul[i].getDateDepart().getAnnee()==annee)
+        {
+            if(tabVoyageSeul[i].getDateDepart().Dans_hiver())
+                a[0]++;
+            if(tabVoyageSeul[i].getDateDepart().Dans_printemps())
+                a[1]++;
+            if(tabVoyageSeul[i].getDateDepart().Dans_ete())
+                a[2]++;
+            if(tabVoyageSeul[i].getDateDepart().Dans_automne())
+                a[3]++;
+        }
+    return a;
+}
+int voyagesSeul::nb_voyagesSeul()
+{
+    return(tabVoyageSeul.size());
 }

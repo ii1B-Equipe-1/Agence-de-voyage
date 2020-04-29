@@ -24,7 +24,7 @@ bool voyagesEnGroupe::ajouter_voyageEnGroupe(voyageEnGroupe g)
 void voyagesEnGroupe::afficher_groupes()
 {
     if (tabVoyageEnGroupe.size()==0)
-        cout << "  * Aucun groupe pour le moment " << endl;
+        cout << "  * Aucun groupe pour le moment " << endl << endl;
     else
         for (int i=0; i<tabVoyageEnGroupe.size(); i++)
             tabVoyageEnGroupe[i].afficher_voyage();
@@ -199,4 +199,68 @@ void voyagesEnGroupe::readFile()
         tabVoyageEnGroupe.push_back(voy);
     }
     in.close();
+}
+
+
+
+
+
+
+
+
+
+
+/***********************************************************************************************************/
+
+vector<int> voyagesEnGroupe::liste_des_annees()
+{
+    vector<int> annees;
+    for(int i=0;i<tabVoyageEnGroupe.size();i++)
+        annees.push_back(tabVoyageEnGroupe[i].getDateDepart().getAnnee());
+    vector<int> annees1;
+    for(int i=0;i<annees.size();i++)
+    {
+        int f=0;
+        for(int j=(i+1);j<annees.size();j++)
+            if(annees[i]==annees[j])
+                f=1;
+        if(f==0)
+            annees1.push_back(annees[i]);
+
+    }
+    return annees1;
+}
+vector<int> voyagesEnGroupe::nbre_desvoyages_engroupes_chaquemois(int annee)
+{
+    vector<int> a;
+    for(int i=0;i<12;i++)
+        a.push_back(0);
+    for(int i=0;i<tabVoyageEnGroupe.size();i++)
+    {
+        if(tabVoyageEnGroupe[i].getDateDepart().getAnnee()==annee)
+        {
+            int mois=tabVoyageEnGroupe[i].getDateDepart().getMois();
+            a[mois-1]++;
+        }
+    }
+    return a;
+}
+vector<int> voyagesEnGroupe::nbre_desvoyages_engroupes_chaquesaison(int annee)
+{
+    vector<int> a;
+    for(int i=0;i<4;i++)
+        a.push_back(0);
+    for(int i=0;i<tabVoyageEnGroupe.size();i++)
+        if(tabVoyageEnGroupe[i].getDateDepart().getAnnee()==annee)
+        {
+            if(tabVoyageEnGroupe[i].getDateDepart().Dans_hiver())
+                a[0]++;
+            if(tabVoyageEnGroupe[i].getDateDepart().Dans_printemps())
+                a[1]++;
+            if(tabVoyageEnGroupe[i].getDateDepart().Dans_ete())
+                a[2]++;
+            if(tabVoyageEnGroupe[i].getDateDepart().Dans_automne())
+                a[3]++;
+        }
+    return a;
 }

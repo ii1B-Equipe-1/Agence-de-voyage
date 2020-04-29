@@ -12,6 +12,7 @@
 #include "voyageEnGroupe.h"
 #include "voyagesEnGroupe.h"
 #include "gestionAgence.h"
+#include "statistiquesAgence.h"
 using namespace std;
 
 void menu_principal(clients&, voyagesSeul&, voyagesEnGroupe&, Destinations&);

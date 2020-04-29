@@ -104,12 +104,16 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
             case 1 :
             break;
             case 2 :
+                afficher_lemoyen_annuel_des_voyages(tabVoyGroupe, tabVoySeul);
             break;
             case 3 :
+                afficher_lesvoyages_chaque_saison(tabVoyGroupe, tabVoySeul);
             break;
             case 4 :
+                la_periode_la_plus_demandee_par_annee(tabVoyGroupe, tabVoySeul);
             break;
             case 5 :
+                la_periode_la_moins_demandee_par_annee(tabVoyGroupe,tabVoySeul);
             break;
             case 6 :
             break;

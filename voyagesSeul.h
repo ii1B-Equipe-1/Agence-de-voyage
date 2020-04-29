@@ -24,6 +24,12 @@ class voyagesSeul
         bool est_vide();
         void writeToFile();
         void readFile();
+
+        /****************************************/
+        vector<int> liste_des_annees();
+        vector<int> nbre_desvoyages_seules_chaquemois(int);
+        vector<int> nbre_desvoyages_seules_chaquesaison(int);
+        int nb_voyagesSeul();
 };
 
 #endif 
