@@ -51,6 +51,6 @@ void voyage::retarder_voyage()
         dep = saisir_date();
     }
     while ((dep < dateDepart) || (dep == dateDepart));
-    Date ret;
-    ret = saisir_date_retour(dep);
+    dateDepart = dep;
+    dateRetour = saisir_date_retour(dateDepart);
 }

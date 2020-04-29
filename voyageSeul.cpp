@@ -23,7 +23,7 @@ void voyageSeul::afficher_voyage()
     cout << "   *IdVoyage       : " << idVoyage << endl;
     cout << "   -Destination    : " << Dest << endl;
     cout << "   -Date de depart : " << dateDepart;
-    cout << "   -Date de retour : " << dateRetour;
+    cout << "   -Date de retour : " << dateRetour << endl;
 }
 
 

@@ -82,12 +82,12 @@ bool est_majus(const string& s)
 }
 bool est_numPasseport(const string& s) // à vérifier le format correcte du numPass .....
 {
-    // 3 lettres majuscules + 5 chiffres
+    // 1 lettres majuscules + 7 chiffres
     if (s.length() != 8)
         return false;
-    if (!est_majus(s.substr(0,3)))
+    if (!est_majus(s.substr(0,1)))
         return false;
-    if (!est_numerique(s.substr(3)))
+    if (!est_numerique(s.substr(1)))
         return false;
     return true;
 }
