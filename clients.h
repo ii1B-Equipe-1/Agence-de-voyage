@@ -25,6 +25,7 @@ class clients
         void annuler_voyage(const string& idVoy); // supprime un voyage de tous les clients si il s'agit d'un voy en groupe
         string numPass_client_gagnant();
         vector<int> agesClients();
+        int nb_clients();
         void writeToFile();
         void readFile();
 };

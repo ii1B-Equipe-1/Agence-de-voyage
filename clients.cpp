@@ -111,6 +111,10 @@ vector<int> clients::agesClients()
 }
 
 
+int clients::nb_clients()
+{
+    return tabClient.size();
+}
 void clients::writeToFile()
 {
     //1ere ligne est le nbre de destinations

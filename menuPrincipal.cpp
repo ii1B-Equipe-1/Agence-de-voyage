@@ -102,6 +102,7 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
         switch(choix)
         {
             case 1 :
+                afficher_nombre_voyages_total(tabVoyGroupe, tabVoySeul);
             break;
             case 2 :
                 afficher_lemoyen_annuel_des_voyages(tabVoyGroupe, tabVoySeul);
@@ -116,11 +117,12 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
                 la_periode_la_moins_demandee_par_annee(tabVoyGroupe,tabVoySeul);
             break;
             case 6 :
+                afficher_nombre_clients_distincts(tabClient);
             break;
             case 7 :
                 tranche_age_frequente(tabClient);
             break;
-            case 8 :
+            case 8 :   
             break;
             default :
                 cout<<"MAUVAIS CHOIX VEUILLEZ SAISIR DE NOUVEAU LE NUMERO";

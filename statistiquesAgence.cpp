@@ -269,6 +269,9 @@ void afficher_lemoyen_mensuel_des_voyages_seuls(voyagesSeul& voy_seul)
 }
 
 
+
+
+/*********************************************************************************/
 int get_indice_max(int tab[], int taille)
 {
     int iMax = 0;
@@ -304,13 +307,30 @@ void tranche_age_frequente(clients& tabClient)
         break;
     case 1:
         cout << " [19,35]  ";
+        break;
     case 2:
         cout << " [36,60] ";
+        break;
     case 3:
         cout << " >60  ";
+        break;
     default:
         break;
     }
 
     cout << " ( " << tranchesAge[tranche] << " clients )" << endl << endl;
+}
+
+
+void afficher_nombre_clients_distincts(clients& tabClient)
+{
+    cout << endl << "  Le nombre de clients distincts pour le moment :  " << tabClient.nb_clients() << endl << endl;
+}
+
+
+void afficher_nombre_voyages_total(voyagesEnGroupe& tabVoyGroupe, voyagesSeul& tabVoySeul)
+{
+    cout << endl << "Le nombre total de l'agence depuis sa création :  " << tabVoySeul.nb_voyagesSeul()+tabVoyGroupe.nb_voyagesEnGroupe() << endl;
+    cout << "    Voyages seul       :  "  << tabVoySeul.nb_voyagesSeul() << endl;
+    cout << "    Voyages en groupe  :  "  << tabVoyGroupe.nb_voyagesEnGroupe() << endl <<endl;
 }

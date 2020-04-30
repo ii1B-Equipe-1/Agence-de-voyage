@@ -34,6 +34,7 @@ void afficher_lemoyen_mensuel_des_voyages_seuls(voyagesSeul& voy_seul);
 int get_indice_max(int [], int);
 void tranche_age_frequente(clients&);
 
+void afficher_nombre_clients_distincts(clients&);
 
-
+void afficher_nombre_voyages_total(voyagesEnGroupe& , voyagesSeul&);
 #endif
