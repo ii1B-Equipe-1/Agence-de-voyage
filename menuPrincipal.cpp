@@ -91,12 +91,19 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
         cout<<"--------------------------"<<endl;
         cout<<" 1/AFFICHER LE NOMBRE TOTAL DE VOYAGE EFFECTUE PAR L'AGENCE DEPUIS SA CREATION:"<<endl;
         cout<<" 2/AFFICHER LE NOMBRE MOYEN DES VOYAGES ANNUELS:"<<endl;
-        cout<<" 3/AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
-        cout<<" 4/AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE PLUS DE DEMANDES:"<<endl;
-        cout<<" 5/AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE MOINS DE DEMANDES:"<<endl;
-        cout<<" 6/AFFICER LE NOMBRE DES CLIENTS DISTINCTS DE L'AGENCE DEPUIS SA CREATION:"<<endl;
-        cout<<" 7/AFFICHER LA TRANCHE D'AGES LA PLUS FREQUENTE DE LA CLIENTELE:"<<endl;
-        cout<<" 8/QUITTER"<<endl<<endl;
+        cout<<" 3/AFFICHER LE NOMBRE MOYEN DES VOYAGES EN GROUPES ANNUELS:"<<endl;
+        cout<<" 4/AFFICHER LE NOMBRE MOYEN DES VOYAGES SEULS ANNUELS:"<<endl;
+        cout<<" 5/AFFICHER LE NOMBRE MOYEN DES VOYAGES MENSUELS CHAQUE ANNEE:"<<endl;
+        cout<<" 6/AFFICHER LE NOMBRE MOYEN DES VOYAGES EN GROUPES MENSUELS CHAQUE ANNEE:"<<endl;
+        cout<<" 7/AFFICHER LE NOMBRE MOYEN DES VOYAGES SEULS MENSUELS CHAQUE ANNEE:"<<endl;
+        cout<<" 8/AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
+        cout<<" 9/AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES EN GROUPES EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
+        cout<<" 10/AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES SEULS EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
+        cout<<" 11/AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE PLUS DE DEMANDES:"<<endl;
+        cout<<" 12/AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE MOINS DE DEMANDES:"<<endl;
+        cout<<" 13/AFFICER LE NOMBRE DES CLIENTS DISTINCTS DE L'AGENCE DEPUIS SA CREATION:"<<endl;
+        cout<<" 14/AFFICHER LA TRANCHE D'AGES LA PLUS FREQUENTE DE LA CLIENTELE:"<<endl;
+        cout<<" 15/QUITTER"<<endl<<endl;
         cout<<"VOTRE CHOIX :";
         cin>>choix;
         switch(choix)
@@ -108,24 +115,45 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
                 afficher_lemoyen_annuel_des_voyages(tabVoyGroupe, tabVoySeul);
             break;
             case 3 :
-                afficher_lesvoyages_chaque_saison(tabVoyGroupe, tabVoySeul);
+                afficher_lemoyen_annuel_des_voyages_engroupes(tabVoyGroupe);
             break;
             case 4 :
-                la_periode_la_plus_demandee_par_annee(tabVoyGroupe, tabVoySeul);
+                afficher_lemoyen_annuel_des_voyages_seuls(tabVoySeul);
             break;
             case 5 :
-                la_periode_la_moins_demandee_par_annee(tabVoyGroupe,tabVoySeul);
+                afficher_lemoyen_mensuel_des_voyages(tabVoyGroupe, tabVoySeul);
             break;
             case 6 :
-                afficher_nombre_clients_distincts(tabClient);
+                afficher_lemoyen_mensuel_des_voyages_engroupes(tabVoyGroupe);//tranche_age_frequente(tabClient);
             break;
             case 7 :
+                afficher_lemoyen_mensuel_des_voyages_seuls(tabVoySeul);
+            break;
+            case 8 :
+                afficher_lesvoyages_chaque_saison(tabVoyGroupe, tabVoySeul);
+            break;
+            case 9 :
+                afficher_lesvoyages_engroupes_chaque_saison(tabVoyGroupe);
+            break;
+            case 10 :
+                afficher_lesvoyages_seuls_chaque_saison(tabVoySeul);
+            break;
+            case 11 :
+                la_periode_la_plus_demandee_par_annee(tabVoyGroupe, tabVoySeul);
+            break;
+            case 12 :
+                la_periode_la_moins_demandee_par_annee(tabVoyGroupe, tabVoySeul);
+            break;
+            case 13 :
+                afficher_nombre_clients_distincts(tabClient);
+            break;
+            case 14 :
                 tranche_age_frequente(tabClient);
             break;
-            case 8 :   
+            case 15 :
             break;
             default :
                 cout<<"MAUVAIS CHOIX VEUILLEZ SAISIR DE NOUVEAU LE NUMERO";
         }
-    }while(choix!=8);
+    }while(choix!=15);
 }

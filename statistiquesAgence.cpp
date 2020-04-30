@@ -68,6 +68,8 @@ void la_periode_la_plus_demandee_par_annee(voyagesEnGroupe& voy_en_grps,voyagesS
     ans_seuls=voy_seul.liste_des_annees();
     vector<int> tout_annee;
     tout_annee=vecteur_unique(ans_grps,ans_seuls);
+    if(tout_annee.size()==0)
+        cout<<"Aucun voyage effectue"<<endl;
     for(int i=0;i<tout_annee.size();i++)
     {
         cout<<"Pour l'annee "<<tout_annee[i]<<" : "<<endl;//pour chaque ans
@@ -82,14 +84,14 @@ void la_periode_la_plus_demandee_par_annee(voyagesEnGroupe& voy_en_grps,voyagesS
         vector<int> occurence=nbre_occurence(nbre_des_voyages_maximales,mois2);
         if(occurence.size()==1)
         {
-            cout<<"On a effectue un nombre de voyages maximale est egale a "<<nbre_des_voyages_maximales<<"durant le mois de ";
+            cout<<"On a effectue un nombre de voyages maximale est egale a "<<nbre_des_voyages_maximales<<" durant le mois de ";
             mois_correspondant(occurence[0]);
             cout<<endl;
         }
 
         else
         {
-            cout<<"On a effectue un nombre de voyages maximale est egale a "<<nbre_des_voyages_maximales<<"durant les mois de ";
+            cout<<"On a effectue un nombre de voyages maximale est egale a "<<nbre_des_voyages_maximales<<" durant les mois de ";
             for(int k=0;k<occurence.size();k++)
                 mois_correspondant(occurence[k]);
             cout<<endl;
@@ -104,6 +106,8 @@ void la_periode_la_moins_demandee_par_annee(voyagesEnGroupe& voy_en_grps,voyages
     ans_seuls=voy_seul.liste_des_annees();
     vector<int> tout_annee;
     tout_annee=vecteur_unique(ans_grps,ans_seuls);
+    if(tout_annee.size()==0)
+        cout<<"Aucun voyage effectue"<<endl;
     for(int i=0;i<tout_annee.size();i++)
     {
         cout<<"Pour l'annee "<<tout_annee[i]<<" : "<<endl;
@@ -118,14 +122,14 @@ void la_periode_la_moins_demandee_par_annee(voyagesEnGroupe& voy_en_grps,voyages
         vector<int> occurence=nbre_occurence(nbre_des_voyages_minimales,mois2);
         if(occurence.size()==1)
         {
-            cout<<"On a effectue un nombre de voyages minimale est egale a "<<nbre_des_voyages_minimales<<"durant le mois de ";
+            cout<<"On a effectue un nombre de voyages minimale est egale a "<<nbre_des_voyages_minimales<<" durant le mois de ";
             mois_correspondant(occurence[0]);
             cout<<endl;
         }
 
         else
         {
-            cout<<"On a effectue un nombre de voyages minimale est egale a "<<nbre_des_voyages_minimales<<"durant les mois de ";
+            cout<<"On a effectue un nombre de voyages minimale est egale a "<<nbre_des_voyages_minimales<<" durant les mois de ";
             for(int k=0;k<occurence.size();k++)
                 mois_correspondant(occurence[k]);
             cout<<endl;
@@ -140,6 +144,8 @@ void afficher_lesvoyages_chaque_saison(voyagesEnGroupe& voy_en_grps,voyagesSeul&
     ans_seuls=voy_seul.liste_des_annees();
     vector<int> tout_annee;
     tout_annee=vecteur_unique(ans_grps,ans_seuls);
+    if(tout_annee.size()==0)
+        cout<<"Aucun voyage effectue"<<endl;
     for(int i=0;i<tout_annee.size();i++)
     {
         cout<<"Pour l'annee "<<tout_annee[i]<<" : "<<endl;
@@ -148,38 +154,42 @@ void afficher_lesvoyages_chaque_saison(voyagesEnGroupe& voy_en_grps,voyagesSeul&
         vector<int> saison2;
         for(int i=0;i<saison.size();i++)
             saison2.push_back(saison1[i]+saison[i]);
-        cout<<"le nombre des voyages effectue  pour la saison d'hiver de cette annee est egale a"<<saison2[0]<<endl;
-        cout<<"le nombre des voyages effectue  pour la saison de printemps de cette annee est egale a"<<saison2[1]<<endl;
-        cout<<"le nombre des voyages effectue  pour la saison d'ete de cette annee est egale a"<<saison2[2]<<endl;
-        cout<<"le nombre des voyages effectue  pour la saison d'automne de cette annee est egale a"<<saison2[3]<<endl;
+        cout<<"Le nombre des voyages effectue  pour la saison d'hiver de cette annee est egale a "<<saison2[0]<<endl;
+        cout<<"Le nombre des voyages effectue  pour la saison de printemps de cette annee est egale a "<<saison2[1]<<endl;
+        cout<<"Le nombre des voyages effectue  pour la saison d'ete de cette annee est egale a "<<saison2[2]<<endl;
+        cout<<"Le nombre des voyages effectue  pour la saison d'automne de cette annee est egale a "<<saison2[3]<<endl;
     }
 }
 void afficher_lesvoyages_seuls_chaque_saison(voyagesSeul& voy_seul)//les voyages seules seulements
 {
     vector<int> ans_seuls;
     ans_seuls=voy_seul.liste_des_annees();
+    if(ans_seuls.size()==0)
+        cout<<"Aucun voyage seul effectue"<<endl;
     for(int i=0;i<ans_seuls.size();i++)
     {
         cout<<"Pour l'annee "<<ans_seuls[i]<<" : "<<endl;
         vector<int> saison1=voy_seul.nbre_desvoyages_seules_chaquesaison(ans_seuls[i]);
-        cout<<"le nombre des voyages seuls effectue  pour la saison d'hiver de cette annee est egale a"<<saison1[0]<<endl;
-        cout<<"le nombre des voyages seuls effectue  pour la saison de printemps de cette annee est egale a"<<saison1[1]<<endl;
-        cout<<"le nombre des voyages seuls effectue  pour la saison d'ete de cette annee est egale a"<<saison1[2]<<endl;
-        cout<<"le nombre des voyages seuls effectue  pour la saison d'automne de cette annee est egale a"<<saison1[3]<<endl;
+        cout<<"le nombre des voyages seuls effectue  pour la saison d'hiver de cette annee est egale a "<<saison1[0]<<endl;
+        cout<<"le nombre des voyages seuls effectue  pour la saison de printemps de cette annee est egale a "<<saison1[1]<<endl;
+        cout<<"le nombre des voyages seuls effectue  pour la saison d'ete de cette annee est egale a "<<saison1[2]<<endl;
+        cout<<"le nombre des voyages seuls effectue  pour la saison d'automne de cette annee est egale a "<<saison1[3]<<endl;
     }
 }
-void afficher_lesvoyagesengroupes_chaque_saison(voyagesEnGroupe& voy_en_grps)
+void afficher_lesvoyages_engroupes_chaque_saison(voyagesEnGroupe& voy_en_grps)
 {
     vector<int> ans_grps;
     ans_grps=voy_en_grps.liste_des_annees();
+    if(ans_grps.size()==0)
+        cout<<"Aucun voyage en groupe effectue"<<endl;
     for(int i=0;i<ans_grps.size();i++)
     {
         cout<<"Pour l'annee "<<ans_grps[i]<<" : "<<endl;
         vector<int> saison=voy_en_grps.nbre_desvoyages_engroupes_chaquesaison(ans_grps[i]);
-        cout<<"le nombre des voyages en groupes effectue  pour la saison d'hiver de cette annee est egale a"<<saison[0]<<endl;
-        cout<<"le nombre des voyages en groupes effectue  pour la saison de printemps de cette annee est egale a"<<saison[1]<<endl;
-        cout<<"le nombre des voyages en groupes effectue  pour la saison d'ete de cette annee est egale a"<<saison[2]<<endl;
-        cout<<"le nombre des voyages en groupes effectue  pour la saison d'automne de cette annee est egale a"<<saison[3]<<endl;
+        cout<<"Le nombre des voyages en groupes effectue  pour la saison d'hiver de cette annee est egale a "<<saison[0]<<endl;
+        cout<<"Le nombre des voyages en groupes effectue  pour la saison de printemps de cette annee est egale a "<<saison[1]<<endl;
+        cout<<"Le nombre des voyages en groupes effectue  pour la saison d'ete de cette annee est egale a "<<saison[2]<<endl;
+        cout<<"Le nombre des voyages en groupes effectue  pour la saison d'automne de cette annee est egale a "<<saison[3]<<endl;
     }
 }
 void afficher_lemoyen_annuel_des_voyages(voyagesEnGroupe& voy_en_grps,voyagesSeul& voy_seul)
@@ -190,28 +200,43 @@ void afficher_lemoyen_annuel_des_voyages(voyagesEnGroupe& voy_en_grps,voyagesSeu
     ans_seuls=voy_seul.liste_des_annees();
     vector<int> tout_annee;
     tout_annee=vecteur_unique(ans_grps,ans_seuls);
-    int nbre_des_voyages;
-    nbre_des_voyages=voy_en_grps.nb_voyagesEnGroupe()+voy_seul.nb_voyagesSeul();
-    float moyen=(nbre_des_voyages/(tout_annee.size()));
-    cout<<" Le nombre moyen des voyages annuels est egale a : "<<moyen<<endl;
+    if(tout_annee.size()==0)
+        cout<<"Aucun voyage effectue"<<endl;
+    else
+    {
+        int nbre_des_voyages;
+        nbre_des_voyages=voy_en_grps.nb_voyagesEnGroupe()+voy_seul.nb_voyagesSeul();
+        float moyen=(nbre_des_voyages/(tout_annee.size()));
+        cout<<" Le nombre moyen des voyages annuels est egale a : "<<moyen<<endl;
+    }
 }
 void afficher_lemoyen_annuel_des_voyages_engroupes(voyagesEnGroupe& voy_en_grps)
 {
     vector<int> ans_grps;
     ans_grps=voy_en_grps.liste_des_annees();
-    int nbre_des_voyages;
-    nbre_des_voyages=voy_en_grps.nb_voyagesEnGroupe();
-    float moyen=(nbre_des_voyages/(ans_grps.size()));
-    cout<<" Le nombre moyen des voyages en groupes annuels est egale a : "<<moyen<<endl;
+    if(ans_grps.size()==0)
+        cout<<"Aucun voyage en groupe effectue"<<endl;
+    else
+    {
+        int nbre_des_voyages;
+        nbre_des_voyages=voy_en_grps.nb_voyagesEnGroupe();
+        float moyen=(nbre_des_voyages/(ans_grps.size()));
+        cout<<" Le nombre moyen des voyages en groupes annuels est egale a : "<<moyen<<endl;
+    }
 }
 void afficher_lemoyen_annuel_des_voyages_seuls(voyagesSeul& voy_seul)
 {
     vector<int> ans_seuls;
     ans_seuls=voy_seul.liste_des_annees();
-    int nbre_des_voyages;
-    nbre_des_voyages=voy_seul.nb_voyagesSeul();
-    float moyen=(nbre_des_voyages/(ans_seuls.size()));
-    cout<<" Le nombre moyen des voyages seuls annuels est egale a : "<<moyen<<endl;
+    if(ans_seuls.size()==0)
+        cout<<"Aucun voyage seul effectue"<<endl;
+    else
+    {
+        int nbre_des_voyages;
+        nbre_des_voyages=voy_seul.nb_voyagesSeul();
+        float moyen=(nbre_des_voyages/(ans_seuls.size()));
+        cout<<" Le nombre moyen des voyages seuls annuels est egale a : "<<moyen<<endl;
+    }
 }
 int somme_tableau(vector<int> a)
 {
@@ -228,6 +253,8 @@ void afficher_lemoyen_mensuel_des_voyages(voyagesEnGroupe& voy_en_grps,voyagesSe
     ans_seuls=voy_seul.liste_des_annees();
     vector<int> tout_annee;
     tout_annee=vecteur_unique(ans_grps,ans_seuls);
+    if(tout_annee.size()==0)
+        cout<<"Aucun voyage effectue"<<endl;
     for(int i=0;i<tout_annee.size();i++)
     {
         vector<int> saison=voy_en_grps.nbre_desvoyages_engroupes_chaquesaison(tout_annee[i]);
@@ -245,6 +272,8 @@ void afficher_lemoyen_mensuel_des_voyages_engroupes(voyagesEnGroupe& voy_en_grps
 {
     vector<int> ans_grps;
     ans_grps=voy_en_grps.liste_des_annees();
+    if(ans_grps.size()==0)
+        cout<<"Aucun voyage en groupe effectue"<<endl;
     for(int i=0;i<ans_grps.size();i++)
     {
         vector<int> saison=voy_en_grps.nbre_desvoyages_engroupes_chaquesaison(ans_grps[i]);
@@ -258,6 +287,8 @@ void afficher_lemoyen_mensuel_des_voyages_seuls(voyagesSeul& voy_seul)
 {
     vector<int> ans_seuls;
     ans_seuls=voy_seul.liste_des_annees();
+    if(ans_seuls.size()==0)
+        cout<<"Aucun voyage seul effectue"<<endl;
     for(int i=0;i<ans_seuls.size();i++)
     {
         vector<int> saison1=voy_seul.nbre_desvoyages_seules_chaquesaison(ans_seuls[i]);

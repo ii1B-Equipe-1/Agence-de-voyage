@@ -22,7 +22,7 @@ void la_periode_la_plus_demandee_par_annee(voyagesEnGroupe& voy_en_grps,voyagesS
 void la_periode_la_moins_demandee_par_annee(voyagesEnGroupe& voy_en_grps,voyagesSeul& voy_seul);
 void afficher_lesvoyages_chaque_saison(voyagesEnGroupe& voy_en_grps,voyagesSeul& voy_seul);
 void afficher_lesvoyages_seuls_chaque_saison(voyagesSeul& voy_seul);//les voyages seules seulements
-void afficher_lesvoyagesengroupes_chaque_saison(voyagesEnGroupe& voy_en_grps);
+void afficher_lesvoyages_engroupes_chaque_saison(voyagesEnGroupe& voy_en_grps);
 void afficher_lemoyen_annuel_des_voyages(voyagesEnGroupe& voy_en_grps,voyagesSeul& voy_seul);
 void afficher_lemoyen_annuel_des_voyages_engroupes(voyagesEnGroupe& voy_en_grps);
 void afficher_lemoyen_annuel_des_voyages_seuls(voyagesSeul& voy_seul);
