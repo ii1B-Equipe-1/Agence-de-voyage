@@ -124,13 +124,16 @@ void Destinations::readFile()
 {
     ifstream in;
     in.open("fichier_Destinations.txt");
-    int nb;
-    in >> nb;
-    for (int i=0; i < nb; i++)
+    if (in.is_open())
     {
-        Destination dest;
-        dest.read(in);
-        tabDestination.push_back(dest); 
+        int nb;
+        in >> nb;
+        for (int i=0; i < nb; i++)
+        {
+            Destination dest;
+            dest.read(in);
+            tabDestination.push_back(dest); 
+        }
+        in.close();
     }
-    in.close();
 }

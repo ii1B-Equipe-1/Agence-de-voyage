@@ -198,15 +198,18 @@ void voyagesEnGroupe::readFile()
 {
     ifstream in;
     in.open("fichier_voyagesEnGroupe.txt");
-    int nb;
-    in >> nb;
-    for (int i=0; i < nb; i++)
+    if (in.is_open())
     {
-        voyageEnGroupe voy;
-        voy.read(in);
-        tabVoyageEnGroupe.push_back(voy);
+        int nb;
+        in >> nb;
+        for (int i=0; i < nb; i++)
+        {
+            voyageEnGroupe voy;
+            voy.read(in);
+            tabVoyageEnGroupe.push_back(voy);
+        }
+        in.close();
     }
-    in.close();
 }
 
 

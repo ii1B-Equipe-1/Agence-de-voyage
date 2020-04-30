@@ -134,15 +134,18 @@ void voyagesSeul::readFile()
 {
     ifstream in;
     in.open("fichier_voyagesSeul.txt");
-    int nb;
-    in >> nb;
-    for (int i=0; i < nb; i++)
+    if (in.is_open())
     {
-        voyageSeul voy;
-        voy.read(in);
-        tabVoyageSeul.push_back(voy);
+        int nb;
+        in >> nb;
+        for (int i=0; i < nb; i++)
+        {
+            voyageSeul voy;
+            voy.read(in);
+            tabVoyageSeul.push_back(voy);
+        }
+        in.close();
     }
-    in.close();
 }
 
 

@@ -133,13 +133,16 @@ void clients::readFile()
 {
     ifstream in;
     in.open("fichier_clients.txt");
-    int nb;
-    in >> nb;
-    for (int i=0; i < nb; i++)
+    if (in.is_open())
     {
-        client cli;
-        cli.read(in);
-        tabClient.push_back(cli);
+        int nb;
+        in >> nb;
+        for (int i=0; i < nb; i++)
+        {
+            client cli;
+            cli.read(in);
+            tabClient.push_back(cli);
+        }
+        in.close();
     }
-    in.close();
 }
