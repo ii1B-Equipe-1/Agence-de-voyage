@@ -93,7 +93,7 @@ void Date::retarder_date()
 
 ostream& Date::write(ostream& out)
 {
-    out << Jour << " " << Mois << " " << Annee;
+    out << Jour << " " << Mois << " " << Annee << " ";
     return out;
 }
 

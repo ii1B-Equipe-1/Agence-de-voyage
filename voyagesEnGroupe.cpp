@@ -176,7 +176,7 @@ void voyagesEnGroupe::writeToFile()
 {
 
     ofstream out;
-    out.open("fichier_voyagesEnGroupe");
+    out.open("fichier_voyagesEnGroupe.txt",ios::trunc);
     out << tabVoyageEnGroupe.size() << endl;
     for (int i=0; i<tabVoyageEnGroupe.size();i++)
     {
@@ -189,7 +189,7 @@ void voyagesEnGroupe::writeToFile()
 void voyagesEnGroupe::readFile()
 {
     ifstream in;
-    in.open("fichier_voyagesEnGroupe");
+    in.open("fichier_voyagesEnGroupe.txt");
     int nb;
     in >> nb;
     for (int i=0; i < nb; i++)

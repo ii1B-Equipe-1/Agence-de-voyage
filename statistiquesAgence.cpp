@@ -267,3 +267,50 @@ void afficher_lemoyen_mensuel_des_voyages_seuls(voyagesSeul& voy_seul)
         cout<<"Pour l'annee "<<ans_seuls[i]<<" le nombre moyen des voyages seuls mensuels est egale a : "<<moyen_mensuel;
     }
 }
+
+
+int get_indice_max(int tab[], int taille)
+{
+    int iMax = 0;
+    for (int i=1; i < taille; i++)
+        if (tab[i] > tab[iMax])
+            iMax = i;
+    return iMax;
+}
+
+void tranche_age_frequente(clients& tabClient)
+{
+    int tranchesAge[4] = {0,0,0,0};  //  <= 18, [19, 35], [36,60], 60>
+    vector<int> agesClients = tabClient.agesClients();
+    for (int i=0; i < agesClients.size(); i++)
+    {
+        int a = agesClients[i];
+        if ( a <= 18)
+            tranchesAge[0] += 1;
+        else if (a <= 35)
+            tranchesAge[1] += 1;
+        else if ( a <= 60)
+            tranchesAge[2] += 1;
+        else
+            tranchesAge[3] += 1;
+    }
+    int tranche = get_indice_max(tranchesAge, 4);
+
+    cout << endl << " La tranche d'age la plus fréquente est  :  ";
+    switch (tranche)
+    {
+    case 0:
+        cout << " <= 18  ";
+        break;
+    case 1:
+        cout << " [19,35]  ";
+    case 2:
+        cout << " [36,60] ";
+    case 3:
+        cout << " >60  ";
+    default:
+        break;
+    }
+
+    cout << " ( " << tranchesAge[tranche] << " clients )" << endl << endl;
+}

@@ -110,7 +110,7 @@ void Destinations::writeToFile()
 {
     //1ere ligne est le nbre de destinations
     ofstream out;
-    out.open("fichier_Destinations");
+    out.open("fichier_Destinations.txt",ios::trunc);
     out << tabDestination.size() << endl;
     for (int i=0; i<tabDestination.size();i++)
     {
@@ -123,7 +123,7 @@ void Destinations::writeToFile()
 void Destinations::readFile()
 {
     ifstream in;
-    in.open("fichier_Destinations");
+    in.open("fichier_Destinations.txt");
     int nb;
     in >> nb;
     for (int i=0; i < nb; i++)

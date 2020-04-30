@@ -120,7 +120,7 @@ void voyagesSeul::writeToFile()
 {
 
     ofstream out;
-    out.open("fichier_voyagesSeul");
+    out.open("fichier_voyagesSeul.txt",ios::trunc);
     out << tabVoyageSeul.size() << endl;
     for (int i=0; i<tabVoyageSeul.size();i++)
     {
@@ -133,7 +133,7 @@ void voyagesSeul::writeToFile()
 void voyagesSeul::readFile()
 {
     ifstream in;
-    in.open("fichier_voyagesSeul");
+    in.open("fichier_voyagesSeul.txt");
     int nb;
     in >> nb;
     for (int i=0; i < nb; i++)

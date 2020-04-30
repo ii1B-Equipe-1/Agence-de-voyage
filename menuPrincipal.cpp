@@ -96,7 +96,7 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
         cout<<" 5/AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE MOINS DE DEMANDES:"<<endl;
         cout<<" 6/AFFICER LE NOMBRE DES CLIENTS DISTINCTS DE L'AGENCE DEPUIS SA CREATION:"<<endl;
         cout<<" 7/AFFICHER LA TRANCHE D'AGES LA PLUS FREQUENTE DE LA CLIENTELE:"<<endl;
-        cout<<"8/QUITTER"<<endl<<endl;
+        cout<<" 8/QUITTER"<<endl<<endl;
         cout<<"VOTRE CHOIX :";
         cin>>choix;
         switch(choix)
@@ -118,6 +118,7 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
             case 6 :
             break;
             case 7 :
+                tranche_age_frequente(tabClient);
             break;
             case 8 :
             break;

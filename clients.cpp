@@ -102,11 +102,20 @@ string clients::numPass_client_gagnant()
     }
 }
 
+vector<int> clients::agesClients()
+{
+    vector<int> ages;
+    for (int i=0; i < tabClient.size(); i++)
+        ages.push_back(tabClient[i].getAge());
+    return ages;
+}
+
+
 void clients::writeToFile()
 {
     //1ere ligne est le nbre de destinations
     ofstream out;
-    out.open("fichier_clients");
+    out.open("fichier_clients.txt", ios::trunc);
     out << tabClient.size() << endl;
     for (int i=0; i<tabClient.size();i++)
     {
@@ -119,7 +128,7 @@ void clients::writeToFile()
 void clients::readFile()
 {
     ifstream in;
-    in.open("fichier_clients");
+    in.open("fichier_clients.txt");
     int nb;
     in >> nb;
     for (int i=0; i < nb; i++)

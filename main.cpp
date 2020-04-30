@@ -33,7 +33,6 @@ int main()
     tabClient.readFile();
     tabVoyageSeul.readFile();
     tabVoyageEngroupe.readFile();
-    cout << "test";
 
     //exécution du programme
     menu_principal(tabClient, tabVoyageSeul, tabVoyageEngroupe, tabDestinations);
