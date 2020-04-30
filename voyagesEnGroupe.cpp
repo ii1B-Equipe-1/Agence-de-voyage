@@ -35,9 +35,17 @@ void voyagesEnGroupe::afficher_groupes(Destination dest)
     if (tabVoyageEnGroupe.size()==0)
         cout << "  * Aucun groupe vers cette destination pour le moment " << endl;
     else
+    {
+        bool test = false;
         for (int i=0; i<tabVoyageEnGroupe.size(); i++)
             if (tabVoyageEnGroupe[i].getDestination() == dest)
+            {
                 tabVoyageEnGroupe[i].afficher_voyage();
+                test = true;
+            }
+        if (test == false)
+            cout << "  * Aucun voyage en groupe vers cette destination pour le moment " << endl;
+    }
 }
 
 int voyagesEnGroupe::nb_voyagesEnGroupe()
