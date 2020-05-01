@@ -3,15 +3,19 @@ using namespace std;
 
 void menu_principal(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest)
 {
+    cout <<"***********************************************"<< endl;
+    cout <<"*                                             *"<< endl;
+    cout <<"*    BIENVENUE CHEZ NOTRE AGENCE DE VOYAGE    *"<< endl;
+    cout <<"*                                             *"<< endl;
+    cout <<"***********************************************"<< endl << endl;
     int choix;
     do
     {
-        cout<<"BIENVENUE CHEZ NOTRE AGENCE DE VOYAGE"<<endl;
-        cout<<"--------------------------------------"<<endl;
-        cout<<" 1/GESTION AGENCE:"<<endl;
-        cout<<" 2/AFFICHER LES STATISTIQUES:"<<endl;
-        cout<<" 3/QUITTER"<<endl<<endl;
-        cout<<"VOTRE CHOIX ---> ";
+        cout << endl;
+        cout<<" 1 - GESTION AGENCE:"<<endl;
+        cout<<" 2 - AFFICHER LES STATISTIQUES:"<<endl;
+        cout<<" 3 - QUITTER"<<endl<<endl;
+        cout<<" VOTRE CHOIX ---> ";
         cin >> choix;
         switch(choix)
         {
@@ -36,17 +40,17 @@ void gerer_agence(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& 
     do
     {
         cout << endl << endl;
-        cout<<"GESTION AGENCE: "<<endl;
-        cout<<"----------------"<<endl;
-        cout<<" 1/GERER LES DESTINATIONS:"<<endl;
-        cout<<" 2/GERER LES GROUPES:"<<endl;
-        cout<<" 3/ESPACE CLIENT:"<<endl;
-        cout<<" 4/AFFICHER TOUS LES VOYAGES DE L'AGENCE"<<endl;
-        cout<<" 5/RETARDER TOUS LES VOYAGES POUR UNE DATE DONNÉE " << endl;
-        cout<<" 6/DONNER LA LISTE DES VOYAGES PAR PAYS:"<<endl;
-        cout<<" 7/TIRAGE QU SORT POUR UN CLIENT GAGNANT:"<<endl;
-        cout<<" 8/RETOUR"<<endl<<endl;
-        cout<<"VOTRE CHOIX :";
+        cout<<"  GESTION AGENCE: "<<endl;
+        cout<<"  ----------------"<<endl;
+        cout<<" 1 - GERER LES DESTINATIONS:"<<endl;
+        cout<<" 2 - GERER LES GROUPES:"<<endl;
+        cout<<" 3 - ESPACE CLIENT:"<<endl;
+        cout<<" 4 - AFFICHER TOUS LES VOYAGES DE L'AGENCE"<<endl;
+        cout<<" 5 - RETARDER TOUS LES VOYAGES POUR UNE DATE DONNÉE " << endl;
+        cout<<" 6 - DONNER LA LISTE DES VOYAGES PAR PAYS:"<<endl;
+        cout<<" 7 - TIRAGE QU SORT POUR UN CLIENT GAGNANT:"<<endl;
+        cout<<" 8 - RETOUR"<<endl<<endl;
+        cout<<" VOTRE CHOIX --> ";
         cin>>choix;
         switch(choix)
         {
@@ -87,24 +91,24 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
 
     do
     {
-        cout<<"AFFICHER LES STATISTIQUES:"<<endl;
-        cout<<"--------------------------"<<endl;
-        cout<<" 1/AFFICHER LE NOMBRE TOTAL DE VOYAGE EFFECTUE PAR L'AGENCE DEPUIS SA CREATION:"<<endl;
-        cout<<" 2/AFFICHER LE NOMBRE MOYEN DES VOYAGES ANNUELS:"<<endl;
-        cout<<" 3/AFFICHER LE NOMBRE MOYEN DES VOYAGES EN GROUPES ANNUELS:"<<endl;
-        cout<<" 4/AFFICHER LE NOMBRE MOYEN DES VOYAGES SEULS ANNUELS:"<<endl;
-        cout<<" 5/AFFICHER LE NOMBRE MOYEN DES VOYAGES MENSUELS CHAQUE ANNEE:"<<endl;
-        cout<<" 6/AFFICHER LE NOMBRE MOYEN DES VOYAGES EN GROUPES MENSUELS CHAQUE ANNEE:"<<endl;
-        cout<<" 7/AFFICHER LE NOMBRE MOYEN DES VOYAGES SEULS MENSUELS CHAQUE ANNEE:"<<endl;
-        cout<<" 8/AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
-        cout<<" 9/AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES EN GROUPES EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
-        cout<<" 10/AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES SEULS EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
-        cout<<" 11/AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE PLUS DE DEMANDES:"<<endl;
-        cout<<" 12/AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE MOINS DE DEMANDES:"<<endl;
-        cout<<" 13/AFFICER LE NOMBRE DES CLIENTS DISTINCTS DE L'AGENCE DEPUIS SA CREATION:"<<endl;
-        cout<<" 14/AFFICHER LA TRANCHE D'AGES LA PLUS FREQUENTE DE LA CLIENTELE:"<<endl;
-        cout<<" 15/QUITTER"<<endl<<endl;
-        cout<<"VOTRE CHOIX :";
+        cout<<"  AFFICHER LES STATISTIQUES:"<<endl;
+        cout<<"  --------------------------"<<endl;
+        cout<<"  1 - AFFICHER LE NOMBRE TOTAL DE VOYAGE EFFECTUE PAR L'AGENCE DEPUIS SA CREATION:"<<endl;
+        cout<<"  2 - AFFICHER LE NOMBRE MOYEN DES VOYAGES ANNUELS:"<<endl;
+        cout<<"  3 - AFFICHER LE NOMBRE MOYEN DES VOYAGES EN GROUPES ANNUELS:"<<endl;
+        cout<<"  4 - AFFICHER LE NOMBRE MOYEN DES VOYAGES SEULS ANNUELS:"<<endl;
+        cout<<"  5 - AFFICHER LE NOMBRE MOYEN DES VOYAGES MENSUELS CHAQUE ANNEE:"<<endl;
+        cout<<"  6 - AFFICHER LE NOMBRE MOYEN DES VOYAGES EN GROUPES MENSUELS CHAQUE ANNEE:"<<endl;
+        cout<<"  7 - AFFICHER LE NOMBRE MOYEN DES VOYAGES SEULS MENSUELS CHAQUE ANNEE:"<<endl;
+        cout<<"  8 - AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
+        cout<<"  9 - AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES EN GROUPES EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
+        cout<<" 10 - AFFICHER CONSECUTIVEMENT LE NOMBRE DE VOYAGES SEULS EFFECTUES PENDANT CHAQUE SAISON DANS UNE ANNEE:"<<endl;
+        cout<<" 11 - AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE PLUS DE DEMANDES:"<<endl;
+        cout<<" 12 - AFFICHER LA PERIODE DU TEMPS DURANT LAQUELLE L'AGENCE A LE MOINS DE DEMANDES:"<<endl;
+        cout<<" 13 - AFFICER LE NOMBRE DES CLIENTS DISTINCTS DE L'AGENCE DEPUIS SA CREATION:"<<endl;
+        cout<<" 14 - AFFICHER LA TRANCHE D'AGES LA PLUS FREQUENTE DE LA CLIENTELE:"<<endl;
+        cout<<" 15 - RETOUR"<<endl<<endl;
+        cout<<" VOTRE CHOIX --> ";
         cin>>choix;
         switch(choix)
         {
