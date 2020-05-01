@@ -412,6 +412,7 @@ void retarder_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyG
     do
     {
         cout << "  Donner la date pour laquelle vous voulez retarder tous les voyages : " << endl;
+        cout << "  --->  ";
         d = saisir_date();
     }
     while ((d < date_systeme()) || ( d == date_systeme()));
