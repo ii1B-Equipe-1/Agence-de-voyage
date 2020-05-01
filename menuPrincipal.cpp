@@ -48,7 +48,7 @@ void gerer_agence(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& 
         cout<<" 4 - AFFICHER TOUS LES VOYAGES DE L'AGENCE"<<endl;
         cout<<" 5 - RETARDER TOUS LES VOYAGES POUR UNE DATE DONNÉE " << endl;
         cout<<" 6 - DONNER LA LISTE DES VOYAGES PAR PAYS:"<<endl;
-        cout<<" 7 - TIRAGE QU SORT POUR UN CLIENT GAGNANT:"<<endl;
+        cout<<" 7 - TIRAGE AU SORT POUR UN CLIENT GAGNANT:"<<endl;
         cout<<" 8 - RETOUR"<<endl<<endl;
         cout<<" VOTRE CHOIX --> ";
         cin>>choix;
