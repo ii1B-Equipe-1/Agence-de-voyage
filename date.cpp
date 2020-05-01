@@ -3,7 +3,8 @@ using namespace std;
 
 
 /**** Les méthodes de la classes Date ****/
-Date::Date(){};
+Date::Date(){}
+
 Date::Date(int j, int m, int a)
 {  
     Jour =j;

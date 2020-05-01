@@ -10,9 +10,9 @@ client::client(const string& numP, const string& n, const string& pren, Date dat
     DateNaissance = dateN;
 }
 
-client::client(){};
+client::client(){}
 
-client::~client(){};
+client::~client(){}
 
 string client::getNumPasseport()
 {

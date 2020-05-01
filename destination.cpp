@@ -2,7 +2,7 @@
 using namespace std;
 
 /**** Méthodes de la classe Destination ****/
-Destination::Destination(){};
+Destination::Destination(){}
 Destination::Destination(const string& p, const string& v)
 {
     Pays = p;

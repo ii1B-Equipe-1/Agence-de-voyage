@@ -3,9 +3,9 @@
 
 /**** Méthodes de la classe Destinations ****/
 
-Destinations::Destinations(){};
+Destinations::Destinations(){}
 
-Destinations::~Destinations(){};
+Destinations::~Destinations(){}
 
 int Destinations::existe(const Destination& dest)
 {
