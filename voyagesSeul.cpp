@@ -86,7 +86,7 @@ bool voyagesSeul::est_vide()
     return false;
 }
 
-void voyagesSeul::retarder_voyages_seul(Date dep)
+int voyagesSeul::retarder_voyages_seul(Date dep)
 {
     int nbRet = 0;
     for (int i=0; i < tabVoyageSeul.size(); i++)
@@ -95,10 +95,7 @@ void voyagesSeul::retarder_voyages_seul(Date dep)
             tabVoyageSeul[i].retarder_voyage();
             nbRet++;
         }
-    if (nbRet == 0)
-        cout << endl << " Aucun voyage seul n'a été retardé"<< endl << endl;
-    else
-        cout <<endl << " " << nbRet << " voyages seul ont été retardé" << endl << endl;
+    return nbRet;
 }
 
 void voyagesSeul::liste_voyages_pays(Destination dest)

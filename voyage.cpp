@@ -51,6 +51,7 @@ void voyage::retarder_voyage()
         dep = saisir_date();
     }
     while ((dep < dateDepart) || (dep == dateDepart));
+    int diff = difference_date(dateDepart, dep);
     dateDepart = dep;
-    dateRetour = saisir_date_retour(dateDepart);
+    dateRetour = ajouter_nbJours(dateRetour, diff);
 }

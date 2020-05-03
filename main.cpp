@@ -18,13 +18,12 @@
 using namespace std;
 
 int main()
-{
+{   
     //les 4 conteneurs sur lesquelles les modifications auront lieu
     Destinations tabDestinations;
     clients tabClient;
     voyagesSeul tabVoyageSeul;
     voyagesEnGroupe tabVoyageEngroupe;
-
 
 
     //charger les conteneurs à partir des fichiers s'ils existent
@@ -33,6 +32,7 @@ int main()
     tabClient.readFile();
     tabVoyageSeul.readFile();
     tabVoyageEngroupe.readFile();
+
 
     //exécution du programme
     menu_principal(tabClient, tabVoyageSeul, tabVoyageEngroupe, tabDestinations);

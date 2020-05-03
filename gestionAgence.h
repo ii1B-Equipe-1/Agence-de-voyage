@@ -52,7 +52,7 @@ string saisir_id_voyage_client(vector<string>&);
 void gerer_ancien_client(const string& numPass, clients&, voyagesSeul&, voyagesEnGroupe&, Destinations&);
 
 
-/**************/
+/********** reste des fonctions ******/
 void afficher_tous_les_voyages(voyagesSeul&, voyagesEnGroupe&, clients&); // affiche tous les voyages de l'agence
 void retarder_tous_les_voyages(voyagesSeul&,voyagesEnGroupe&);            // retarde tous les voyages pour une date donnée d'une période donnée
 void liste_voyages_pays(voyagesSeul&, voyagesEnGroupe&, Destinations&);// 

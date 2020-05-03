@@ -26,8 +26,8 @@ class clients
         string numPass_client_gagnant();
         vector<int> agesClients();
         int nb_clients();
-        void writeToFile();
-        void readFile();
+        void writeToFile(); // ecrire l'objet dans un fichier
+        void readFile();    // lire l'objet du fichier
 };
 
 

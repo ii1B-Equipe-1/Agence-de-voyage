@@ -24,8 +24,8 @@ class Destinations
         bool est_vide();
         int nb_dest();
         Destination& getDest(int);
-        void writeToFile();
-        void readFile();
+        void writeToFile(); // ecrire l objet dans un fichier
+        void readFile();   // lire l objet a partir du fichier
 };
 
 

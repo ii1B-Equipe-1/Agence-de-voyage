@@ -164,7 +164,7 @@ bool voyagesEnGroupe::est_vide()
     return false;
 }
 
-void voyagesEnGroupe::retarder_voyages_en_groupe(Date dep)
+int voyagesEnGroupe::retarder_voyages_en_groupe(Date dep)
 {
     int nbRet =0;
     for (int i=0; i < tabVoyageEnGroupe.size(); i++)
@@ -173,10 +173,7 @@ void voyagesEnGroupe::retarder_voyages_en_groupe(Date dep)
             tabVoyageEnGroupe[i].retarder_voyage();
             nbRet++;
         }
-    if (nbRet == 0)
-        cout << " Aucun voyage en groupe n'a été retardé"<< endl << endl;
-    else
-        cout << " " << nbRet << " voyages en groupe ont été retardé" << endl << endl;
+    return nbRet;
 }
 
 

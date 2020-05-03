@@ -170,18 +170,18 @@ ostream& operator<<(ostream& output, const Date& d)
 /**** Fonctions  ****/
 Date date_systeme()
 {
-    //temps courant basé sur le temps systeme
-    time_t tempsCourant = time(0);
+    //periodes courant basé sur le periodes systeme
+    time_t periodesCourant = time(0);
 
-    /* la structure tm contient la date est le temps sous forme
+    /* la structure tm contient la date est le periodes sous forme
        de structure C                                        */                       
-    tm* temps = localtime(&tempsCourant);
+    tm* periodes = localtime(&periodesCourant);
     
     /* on extrait les variables de la structure tm et on les affecte
        à des entiers */
-    int j = temps->tm_mday;
-    int m = 1 + temps->tm_mon;
-    int a = 1900 + temps->tm_year;
+    int j = periodes->tm_mday;
+    int m = 1 + periodes->tm_mon;
+    int a = 1900 + periodes->tm_year;
 
     Date dateCourante(j,m,a);
     return dateCourante;
@@ -206,7 +206,7 @@ bool date_valide(int j, int m, int a)
         break;
     //le mois de Fevrier
     case 2:
-        if ((j==29) && (a%4 != 0))
+        if ((j==29) && (!annee_bissextile(a))   )
             return false;
         else if((j==29) && (a%4 == 0))
             break;
@@ -322,41 +322,97 @@ bool annee_bissextile (int annee)
     return false;
 }
 
+int nb_annee_bissextile(Date d) //nbre annee bissextile avant date d
+{
+    int annees = d.getAnnee();
+    if (d.getMois() <= 2)
+        annees--;
+    return annees / 4 - annees / 100 + annees / 400 ; // l'annee est bissextile si : (divisible par 4 et non divisible par 100) ou (divisible par 400)
+}
+
 int difference_date(Date d1, Date d2)
 {
+    int nbJoursMois [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int j1 = d1.getJour();
     int m1 = d1.getMois();
     int a1 = d1.getAnnee();
-
     int j2 = d2.getJour();
     int m2 = d2.getMois();
     int a2 = d2.getAnnee();
-    
-    int cumJours[] = {0,31,59,90,120,151,181,212,243,273,304,334};
-    int cumJoursBissextile[] = {0,31,60,91,121,152,182,213,244,274,305,335};
-    int nbJours = 0;
-    if (d1.getAnnee() == d2.getAnnee())
-        if (annee_bissextile(d1.getAnnee()))
-            return abs((cumJoursBissextile[m2-1]+j2 - (cumJoursBissextile[m1-1]+j1)));
-        else
-            return abs((cumJours[m2-1]+j2) - (cumJours[m1-1]+j1));     
-    if (annee_bissextile(a1))
-        nbJours += 366 - (cumJoursBissextile[m1]+j1);
-    else
-        nbJours += 365 - (cumJours[m1]+j1);
 
-    int annee = a1 +1;
-    while (annee < a2)
+    long int nb1 = a1*365 + j1; // nb jours avant d1
+    for (int i =0; i < m1 - 1 ;i++)
+        nb1 += nbJoursMois[i];
+    nb1 += nb_annee_bissextile(d1); // +1j pour chaque annee bissextile
+
+    long int nb2 = a2*365 + j2; // nb jours avant d1
+    for (int i =0; i < m2 - 1 ;i++)
+        nb2 += nbJoursMois[i];
+    nb2 += nb_annee_bissextile(d2); // +1j pour chaque annee bissextile
+    
+    return abs(nb2 - nb1);
+}
+
+
+Date prochain_jour(Date d)
+{
+    Date d2;
+    int j = d.getJour();
+    int m = d.getMois();
+    int a = d.getAnnee();
+    switch (m)
     {
-        if (annee_bissextile(annee))
-            nbJours += 366;
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+        if (j == 31)
+            d2.setDate(1,m+1, a);
         else
-            nbJours += 365;
-        annee++;       
+            d2.setDate(j+1,m,a);
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        if (j == 30)
+            d2.setDate(1,m+1, a);
+        else
+            d2.setDate(j+1,m,a);
+        break;
+    case 12:
+        if (j==31)
+            d2.setDate(1,1,a+1);
+        else
+            d2.setDate(j+1,m,a);
+        break;
+    case 2:
+        if ((j==29) && (annee_bissextile(a)))
+            d2.setDate(1,3,a);
+        else if ((j==28) && (!annee_bissextile(a)))
+            d2.setDate(1,3,a);
+        else
+            d2.setDate(j+1,m,a);
+        break;
+    default:
+        break;
     }
-    if (annee_bissextile(a2))
-        nbJours += cumJoursBissextile[m2-1] + j2;
-    else
-        nbJours += cumJours[m2-1] + j2;
-    return abs(nbJours);
+    return d2;
+}
+
+
+Date ajouter_nbJours(Date d, int nbJours)
+{  
+    if (nbJours >= 1)
+    {
+        Date d2 = d;
+        do
+        {
+            d2 = prochain_jour(d2);
+        }
+        while ( difference_date(d,d2) != nbJours);
+        return d2;
+    }
 }

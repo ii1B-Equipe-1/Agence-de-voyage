@@ -306,7 +306,8 @@ void afficher_lemoyen_mensuel_des_voyages_seuls(voyagesSeul& voy_seul)
 
 
 
-/*********************************************************************************/
+
+
 int get_indice_max(int tab[], int taille)
 {
     int iMax = 0;

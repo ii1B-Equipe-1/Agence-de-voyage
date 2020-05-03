@@ -37,7 +37,7 @@ class client
 /**** autres fonctions ****/
 bool est_majus(const string&);
 bool est_numPasseport(const string&); //verifie si une chaine est un numPass valide
-string saisir_numPasseport();
+string saisir_numPasseport();  //saisir un num Pass a partir du clavier
 
 
 ostream& writeVect(vector<string>&, ostream&);

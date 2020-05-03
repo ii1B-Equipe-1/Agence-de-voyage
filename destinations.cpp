@@ -54,8 +54,6 @@ ostream& operator<<(ostream& output, const Destinations& d)
 
 void Destinations::saisir_destination()
 {
-    //cout << "Les destinations actuelles :" << endl;
-    //cout << *this <<endl ;
     cout <<"--->  Donner le pays de la destination à ajouter :  ";
     string p;
     cin >> p;
@@ -71,8 +69,6 @@ void Destinations::saisir_destination()
 
 void Destinations::enlever_destination()
 {
-    //cout << "Les destinations actuelles :" << endl;
-    //cout << *this << endl;
     cout <<"Donner le pays de la destination à enlever :  ";
     string p;
     cin >> p;

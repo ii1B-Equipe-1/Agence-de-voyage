@@ -397,7 +397,10 @@ void gerer_clients(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe&
 
 
 
-/*****************/
+
+
+
+/*************** reste des fonctions ****************************/
 void afficher_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
 {
     cout << endl << "Les voyages en groupes :  " << endl;
@@ -416,8 +419,23 @@ void retarder_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyG
         d = saisir_date();
     }
     while ((d < date_systeme()) || ( d == date_systeme()));
-    tabVoySeul.retarder_voyages_seul(d);
-    tabVoyGroupe.retarder_voyages_en_groupe(d);
+    int retS = tabVoySeul.retarder_voyages_seul(d);
+    int retG = tabVoyGroupe.retarder_voyages_en_groupe(d);
+    if (retS != 0)
+    {
+        if (retS == 1 )
+            cout << endl << "   " << retS << " voyage seul a été retardé" << endl << endl;
+        else
+            cout << endl << "   " << retS << " voyages seul ont été retardé" << endl << endl;
+    }
+    if (retG != 0)
+    {
+        if (retG == 1 )
+            cout << endl << "   " << retG << " voyage en groupe a été retardé" << endl << endl;
+        else
+            cout << endl << "   " << retG << " voyages en groupe ont été retardé" << endl << endl;
+    }
+
 }
 
 void liste_voyages_pays(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest)

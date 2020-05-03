@@ -31,6 +31,7 @@ void afficher_lemoyen_mensuel_des_voyages(voyagesEnGroupe& voy_en_grps,voyagesSe
 void afficher_lemoyen_mensuel_des_voyages_engroupes(voyagesEnGroupe& voy_en_grps);
 void afficher_lemoyen_mensuel_des_voyages_seuls(voyagesSeul& voy_seul);
 
+
 int get_indice_max(int [], int);
 void tranche_age_frequente(clients&);
 
