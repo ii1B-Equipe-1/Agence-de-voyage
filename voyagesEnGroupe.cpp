@@ -61,7 +61,7 @@ vector<string> voyagesEnGroupe::groupes_disponibles()
         cout << "Les groupes disponibles :  " << endl;
         for (int i =0; i< tabVoyageEnGroupe.size(); i++)
         {
-            if (tabVoyageEnGroupe[i].nb_participants() < 15)
+            if ((tabVoyageEnGroupe[i].nb_participants() < 15) && ( tabVoyageEnGroupe[i].getDateDepart() > date_systeme()))
                 tabVoyageEnGroupe[i].afficher_voyage();
                 disponibles.push_back(tabVoyageEnGroupe[i].getIdVoyage());   
         }
@@ -79,7 +79,7 @@ vector<string> voyagesEnGroupe::groupes_disponibles(Destination d)
         cout << "Les groupes disponibles :  " << endl;
         for (int i =0; i< tabVoyageEnGroupe.size(); i++)
         {
-            if ((tabVoyageEnGroupe[i].nb_participants() < 15) && (tabVoyageEnGroupe[i].getDestination() == d))
+            if ((tabVoyageEnGroupe[i].nb_participants() < 15) && (tabVoyageEnGroupe[i].getDestination() == d) && (tabVoyageEnGroupe[i].getDateDepart() > date_systeme()))
                 tabVoyageEnGroupe[i].afficher_voyage();
                 disponibles.push_back(tabVoyageEnGroupe[i].getIdVoyage());   
         }
@@ -100,7 +100,7 @@ vector<string> voyagesEnGroupe::tous_les_groupes()
 bool voyagesEnGroupe::existe_groupes_disponibles()
 {
     for (int i=0; i < tabVoyageEnGroupe.size(); i++)
-        if (tabVoyageEnGroupe[i].nb_participants() < 15 )
+        if ((tabVoyageEnGroupe[i].nb_participants() < 15 ) && (tabVoyageEnGroupe[i].getDateDepart() > date_systeme()))
             return true ;
     return false;
 }
@@ -108,7 +108,7 @@ bool voyagesEnGroupe::existe_groupes_disponibles()
 bool voyagesEnGroupe::existe_groupes_disponibles(Destination d)
 {
     for (int i=0; i < tabVoyageEnGroupe.size(); i++)
-        if ((tabVoyageEnGroupe[i].nb_participants() < 15) && (tabVoyageEnGroupe[i].getDestination() == d ))
+        if ((tabVoyageEnGroupe[i].nb_participants() < 15) && (tabVoyageEnGroupe[i].getDestination() == d ) && (tabVoyageEnGroupe[i].getDateDepart() > date_systeme()))
             return true ;
     return false;
 }

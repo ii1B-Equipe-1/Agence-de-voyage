@@ -149,7 +149,6 @@ void voyagesSeul::readFile()
 
 
 
-/*********************************************************************************/
 
 
 vector<int> voyagesSeul::liste_des_annees()

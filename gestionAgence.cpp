@@ -106,33 +106,37 @@ void annuler_voyage_groupe(voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
 
 void gerer_groupes(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest, clients& tabClient)
 {
-    int choix;
-    do
+    if (tabDest.nb_dest()==0)
+        cout << endl << "  Veuillez ajouter des destinations" << endl << endl;
+    else
     {
-        menu_gestion_groupe();
-        cout << "votre choix ---> ";
-        cin >> choix;
-        if (choix == 1)
+        int choix;
+        do
         {
-            tabVoyGroupe.afficher_groupes();
-        }
-        if (choix == 2)
-        {
-            if (tabVoyGroupe.est_vide())
-                cout << endl << " Aucun groupe pour le moment " << endl;
-            else
+            menu_gestion_groupe();
+            cout << "votre choix ---> ";
+            cin >> choix;
+            if (choix == 1)
             {
-                Destination dest = choisir_destination(tabDest);
-                tabVoyGroupe.afficher_groupes(dest);
-            }
-        }
-        if (choix == 3)
-            saisir_voyage_en_groupe(tabVoyGroupe, tabDest);
-        if (choix == 4)
-            annuler_voyage_groupe(tabVoyGroupe, tabClient);
-    } 
-    while  (choix != 5);
-    
+                tabVoyGroupe.afficher_groupes();
+            }   
+            if (choix == 2)
+            {
+                if (tabVoyGroupe.est_vide())
+                    cout << endl << " Aucun groupe pour le moment " << endl;
+                else
+                {
+                    Destination dest = choisir_destination(tabDest);
+                    tabVoyGroupe.afficher_groupes(dest);
+                }
+            }  
+            if (choix == 3)
+                saisir_voyage_en_groupe(tabVoyGroupe, tabDest);
+            if (choix == 4)
+                annuler_voyage_groupe(tabVoyGroupe, tabClient);
+        } 
+        while  (choix != 5);  
+    }    
 }
 
 
@@ -375,23 +379,28 @@ void gerer_ancien_client(const string& numPass, clients& tabClient, voyagesSeul&
 
 void gerer_clients(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, Destinations& tabDestinations)
 {
-    string numPass;
-    cout << "  Donner un numéro passeport :" << endl;
-    numPass = saisir_numPasseport();
-    // si c'est un ancien client :
-    if (tabClient.existe(numPass) != -1)
-        gerer_ancien_client(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDestinations);
-    
-    
-    if ( tabClient.existe(numPass) == -1)
+    if (tabDestinations.nb_dest()==0)
+        cout << endl << "  Veuillez ajouter des destinations" << endl << endl;
+    else
     {
-        //ajout du nouveau client
-        tabClient.saisir_client(numPass);
-        //nouveau voyage
-        nouveau_voyage(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDestinations);
+        string numPass;
+        cout << "  Donner un numéro passeport :" << endl;
+        numPass = saisir_numPasseport();
+        // si c'est un ancien client :
+        if (tabClient.existe(numPass) != -1)
+            gerer_ancien_client(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDestinations);
+    
+    
+        if ( tabClient.existe(numPass) == -1)
+        {
+            //ajout du nouveau client
+            tabClient.saisir_client(numPass);
+            //nouveau voyage
+            nouveau_voyage(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDestinations);
         
-        //on répéte la meme chose que pour un ancien client
-        gerer_ancien_client(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDestinations);
+            //on répéte la meme chose que pour un ancien client
+            gerer_ancien_client(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDestinations);
+        }   
     }
 }
 
@@ -403,10 +412,18 @@ void gerer_clients(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe&
 /*************** reste des fonctions ****************************/
 void afficher_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, clients& tabClient)
 {
-    cout << endl << "Les voyages en groupes :  " << endl;
-    tabVoyGroupe.afficher_groupes();
-    cout << endl << "Les voyages de clients seul : " << endl << endl;
-    tabVoySeul.afficher_voyagesSeul(tabClient);
+    if ((tabVoySeul.nb_voyagesSeul()+tabVoyGroupe.nb_voyagesEnGroupe()) == 0)
+        cout << endl << "  Aucun voyage pour le moment " << endl << endl;
+    if (tabVoyGroupe.nb_voyagesEnGroupe()!=0)
+    {
+        cout << endl << "Les voyages en groupes :  " << endl;
+        tabVoyGroupe.afficher_groupes();
+    }
+    if (tabVoySeul.nb_voyagesSeul()!=0)
+    {
+        cout << endl << "Les voyages de clients seul : " << endl << endl;
+        tabVoySeul.afficher_voyagesSeul(tabClient);
+    }
 }
 
 void retarder_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe)
@@ -435,30 +452,41 @@ void retarder_tous_les_voyages(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyG
         else
             cout << endl << "   " << retG << " voyages en groupe ont été retardé" << endl << endl;
     }
-
+    if ((retS==0) && (retG ==0))
+        cout << endl << "  Aucun voyage n'a été retardé" << endl << endl;
 }
 
 void liste_voyages_pays(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest)
 {
-    for (int i=0; i < tabDest.nb_dest(); i++)
+    if (tabDest.nb_dest()==0)
+        cout << endl << "  Il faut ajouter des destinations "<< endl << endl;
+    else
     {
-        Destination d = tabDest.getDest(i);
-        cout << endl;
-        cout << "  ----- POUR LA DESTINATION -----  " << d << endl;
-        cout << endl << "    Les voyages seul :" << endl << endl;
-        tabVoySeul.liste_voyages_pays(d);
-        cout << "    Les voyages en groupe :" << endl;
-        tabVoyGroupe.afficher_groupes(d);
+        for (int i=0; i < tabDest.nb_dest(); i++)
+        {
+            Destination d = tabDest.getDest(i);
+            cout << endl;
+            cout << "  ----- POUR LA DESTINATION -----  " << d << endl;
+            cout << endl << "    Les voyages seul :" << endl << endl;
+            tabVoySeul.liste_voyages_pays(d);
+            cout << "    Les voyages en groupe :" << endl;
+            tabVoyGroupe.afficher_groupes(d);
+        }   
     }
 }
 
 
 void client_gagnant(voyagesSeul& tabVoySeul, voyagesEnGroupe& tabVoyGroupe, clients& tabClient, Destinations& tabDest)
 {
-    string numPass;
-    numPass = tabClient.numPass_client_gagnant();
-    cout << "  Le client gagnant  : " << endl;
-    cout << tabClient.getClient(numPass) << endl;
-    cout << "  Saisir le nouveau voyage pour le client gagnant :"<< endl;
-    nouveau_voyage(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDest);
+    if (tabClient.nb_clients() == 0)
+        cout << endl << " Aucun client pour effectuer le tirage " << endl << endl;
+    else
+    {
+        string numPass;
+        numPass = tabClient.numPass_client_gagnant();
+        cout << "  Le client gagnant  : " << endl;
+        cout << tabClient.getClient(numPass) << endl;
+        cout << "  Saisir le nouveau voyage pour le client gagnant :"<< endl;
+        nouveau_voyage(numPass, tabClient, tabVoySeul, tabVoyGroupe, tabDest);
+    }
 }
