@@ -17,6 +17,11 @@ void gerer_destinations(Destinations& tabDestination)
         menu_gestion_destinations();
         cout << "votre choix ---> ";
         cin >> choix;
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         switch (choix)
         {
         case 1:
@@ -116,6 +121,11 @@ void gerer_groupes(voyagesEnGroupe& tabVoyGroupe, Destinations& tabDest, clients
             menu_gestion_groupe();
             cout << "votre choix ---> ";
             cin >> choix;
+            if (!cin)
+            {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
             if (choix == 1)
             {
                 tabVoyGroupe.afficher_groupes();
@@ -225,6 +235,11 @@ void voyager_en_groupe(const string& numPass, clients& tabClient, voyagesSeul& t
         cout << "   3- Retour" << endl << endl;
         cout << "votre choix ---> ";
         cin >> choix;
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         if (choix == 1)
         {
             vector<string> dispo = tabVoyGroupe.groupes_disponibles();
@@ -268,6 +283,11 @@ void nouveau_voyage(const string& numPass, clients& tabClient, voyagesSeul& tabV
         cout << "   3- Retour" << endl << endl;
         cout << endl << "votre choix --->";
         cin >> choix;
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         if (choix == 1)
         {
             Destination dest = choisir_destination(tabDestinations);
@@ -354,6 +374,11 @@ void gerer_ancien_client(const string& numPass, clients& tabClient, voyagesSeul&
         menu_ancien_client();
         cout << "votre choix ---> ";
         cin >> choix;
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         switch (choix)
         {
             case 1:

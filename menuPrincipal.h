@@ -1,6 +1,8 @@
 #ifndef MENUPRINCIPAL_H
 #define MENUPRINCIPAL_H
 
+#include <iostream>
+#include <limits>
 #include "destination.h"
 #include "destinations.h"
 #include "date.h"

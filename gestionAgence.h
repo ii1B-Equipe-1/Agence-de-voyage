@@ -7,6 +7,7 @@
 #include "client.h"
 #include "clients.h"
 #include "voyage.h"
+#include <limits>
 #include "voyageSeul.h"
 #include "voyagesSeul.h"
 #include "voyageEnGroupe.h"

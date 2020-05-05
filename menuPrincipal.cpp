@@ -17,6 +17,11 @@ void menu_principal(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe
         cout<<" 3 - QUITTER"<<endl<<endl;
         cout<<" VOTRE CHOIX ---> ";
         cin >> choix;
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         switch(choix)
         {
             case 1 :
@@ -52,6 +57,11 @@ void gerer_agence(clients& tabClient, voyagesSeul& tabVoySeul, voyagesEnGroupe& 
         cout<<" 8 - RETOUR"<<endl<<endl;
         cout<<" VOTRE CHOIX --> ";
         cin>>choix;
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         switch(choix)
         {
             case 1 :
@@ -110,6 +120,11 @@ void afficher_statistiques(clients& tabClient, voyagesSeul& tabVoySeul, voyagesE
         cout<<" 15 - RETOUR"<<endl<<endl;
         cout<<" VOTRE CHOIX --> ";
         cin>>choix;
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         switch(choix)
         {
             case 1 :
