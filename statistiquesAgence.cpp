@@ -371,7 +371,7 @@ void afficher_nombre_clients_distincts(clients& tabClient)
 
 void afficher_nombre_voyages_total(voyagesEnGroupe& tabVoyGroupe, voyagesSeul& tabVoySeul)
 {
-    cout << endl << "Le nombre total de l'agence depuis sa création :  " << tabVoySeul.nb_voyagesSeul()+tabVoyGroupe.nb_voyagesEnGroupe() << endl;
+    cout << endl << "Le nombre total des voyages de l'agence depuis sa création :  " << tabVoySeul.nb_voyagesSeul()+tabVoyGroupe.nb_voyagesEnGroupe() << endl;
     cout << "    Voyages seul       :  "  << tabVoySeul.nb_voyagesSeul() << endl;
     cout << "    Voyages en groupe  :  "  << tabVoyGroupe.nb_voyagesEnGroupe() << endl <<endl;
 }
